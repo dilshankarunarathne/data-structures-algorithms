@@ -1054,7 +1054,10 @@ public class RadixSort {
 
 ## Bucket Sort 
 
-![Bucket Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/53-bucket-sort.png "Bucket Sort")
+* Not in-place
+* Stability will depend on the sort algorithm used to sort the buckets - ideally, you want a stable sort 
+* To achieve O(n), must have only one item per bucket 
+* Insertion sort is often used to sort the buckets, because it is fast when the number of items is small 
 
 For this, we need a clear understanding about hashing. Check out [HashTables](HashTables.md) before reading this note.  
 This algorithm uses hashing, and it makes assumptions about the data - and because of that, it can achive linear time. It performs best when the hashed balues of the items being sorted are evenly distributed - so there aren't many collisions.  
