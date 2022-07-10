@@ -495,5 +495,31 @@ There is also a [java.util.TreeSet](https://docs.oracle.com/javase/7/docs/api/ja
 
 ### Notes on Sorting Algorithms: [Sorting.md](Sorting.md)  
 
-### Notes on Searching Algorithms: [Searching.md](Sorting.md)  
+# Linear Search 
+
+There is nothing much to tell about this. It just traverse through the entire data set, and check if the value at each index matches the given search key.  
+In the worst case, it takes O(n) time.  
+
+A simple implementation of the linear search algorithm: [/src/Searching/LinearSearch.java](/src/Searching/LinearSearch.java)  
+
+# Binary Search 
+
+This is pretty much the standard and most popular search algorithm.  
+**But**, it requires the data it's searching - to be sorted. So, we can only perform binary search on a sorted data set. 
+So, we need to sort the dataset, before searching in it.  
+If our application is going to be using binary search a lot, we can make sure it's always sorted - by inserting items to the data structre in it's sorted order.  
+
+Binary search - chooses the element in the middle of the array (or any other data structure), and it compares the search value.  
+If the element we're searching for is the element in the middle - we are done searching.  
+If the element we're searching for is less than the value in the middle, we're going to search the **left half** of the array - because the dataset is sorted. If the search key is greater than the middle element, we need to search the right part of the array.  
+And then we rinse and repeat. We do the same thing to the left or right half of the array. We take the middle element of the left/right part array, and check if the middle value is greater or lower than the search key.  
+And then we repeat that process until either we find the our search value, or we'll end up in the end with one element partition. If that's not equal to the search value, the element does not exist within the dataset.  
+
+At each rinse and repeat step - we're dividing the array in half, just like we did with merge sort. Because of this, we can implement this algorithm recursively. 
+
+![Binary Search](\assets\54-binary-search.png "Binary Search")  
+
+A simple implementation of a linear binary search algorithm: [/src/Searching/IterativeBinarySearch.java](/src/Searching/IterativeBinarySearch.java)  
+A simple implementation of a recursive binary search algorithm: [/src/Searching/RecursiveBinarySearch.java](/src/Searching/RecursiveBinarySearch.java)  
+ 
 
