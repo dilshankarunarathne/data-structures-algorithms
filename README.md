@@ -506,9 +506,16 @@ parent = floor((i - 1) / 2)
 * If the item is greater than its parent, we swap it with its parent
 * We then rinse and repeat until we reach the root 
 
-![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/71-heap.png "Heap")  
+#### Delete from Heap 
 
-![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/72-heap.png "Heap")  
+* Must choose a replacement value 
+* Will take the rightmost value, so that the tree remains complete 
+* Then we must heapify the heap 
+* When replacement value is greater than parent, fix heap above. Otherwise, fix heap below.
+* Fix heap above - same as insert. Swap replacement value with parent
+* Fix heap below - swap the replacement value with the larger of its two children 
+* Rinse and repeat in both cases until the replacement value is in its correct position 
+* Will only need to fix up or down - not both
 
 # Priority Queues 
 
