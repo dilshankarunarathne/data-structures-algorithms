@@ -440,7 +440,9 @@ In this case, all we do is - we replace the node we're deleting with its only ch
 * Need to figure out what the replacement node will be 
 * Want minimal disruption to the existing tree structure 
 * Can take the replacement node from the deleted node's left subtree or the right subtree 
-* 
+* If taking it from the left subtree, we have to take the largest value in the left subtree
+* If taking it from the right subtree, we have to take the smallest value in the right subtre 
+* Choose one and stick to it
 
 There are not a lot of tree implementations in the JDK. The one that we'll probably use is [java.util.TreeMap](https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html) class.  
 It takes key-value pairs. It says, **it is a Red-Black tree based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.**   
