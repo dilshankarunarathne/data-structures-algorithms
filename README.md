@@ -53,7 +53,12 @@ We could take the average case, but that's not going to tell us the absolute-wor
 * If an array starts at memory address x, and the size of each element in the array is y, we can calculate the memory address of the <i>i<sup>th</sup></i> element by using the following expression: <code>x + i * y</code>  
 * If we know the index of an element, the time to retrieve the element will be the same, no matter where it is in the array.  
 
-![Array Big-O](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/1-array-big-o.png "Array Big-O")   
+
+| Operation                        | Time Complexity             |
+|----------------------------------|-----------------------------|
+| Retrieve with index              | O(1) - Constant Time        |
+| Retrieve without index           | O(n) - Linear Time          |
+
 
 # Data Structures 
 
