@@ -726,7 +726,48 @@ Retrieve a value from a hash table
 
 ## Linear Probing 
 
-Check out [\src\DataStructures\HashTable\SimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/src/DataStructures/HashTable/SimpleHashTable.java). It is an implementation that uses a very simple hashing function. We just use the modulo operator on the length of the backing array by the length of the key. That would give us an integer that's in the range of backing array's indices.  
+Check out this implementation of a simple hash table. 
+
+```java
+package DataStructures.HashTable;
+
+import DataStructures.Employee;
+
+public class SimpleHashTable {
+    private Employee[] hashTable;
+
+    public SimpleHashTable() {
+        hashTable = new Employee[10];
+    }
+
+    private int hashKey(String key) {
+        return key.length() % hashTable.length;
+    }
+
+    public void put(String key, Employee employee) {
+        int hashedKey = hashKey(key);
+        if (hashTable[hashedKey] != null) {
+            System.out.println("Sorry, there's already an employee at position " + hashedKey);
+        } else {
+            hashTable[hashedKey] = employee;
+        }
+    }
+
+    public Employee get(String key) {
+        int hashedKey = hashKey(key);
+        return hashTable[hashedKey];
+    }
+
+    public void printHashTable() {
+        for (int i = 0; i < hashTable.length; i ++) {
+            System.out.print(hashTable[i] + " ");
+        }
+        System.out.println();
+    }
+}
+```
+
+It is an implementation that uses a very simple hashing function. We just use the modulo operator on the length of the backing array by the length of the key. That would give us an integer that's in the range of backing array's indices.  
 But this could easily run into collisions. If more than one key has the same length, they get the same hash. To handle collisions in this, all we do is printing out a message to the console.  
 
 To handle or prevent collisions in hashing, there are more sensible strategies that we could use. One of those is called **Open Addressing**. With open addressing, if a value already exists within a given index - taken by hashing a key (a different key), we just figure out a way to address another slot for the value.  
@@ -735,7 +776,105 @@ One way to do that is with **Linear Probing**. When we discover that a position 
 This is called a linear probing, because every time we increment the index - and that happens in a linear fashion, and every increment of the index is called a probe.  
 Meaning, if we have to increment the index by one to find another position - we call it 'using one probe'. If we have to increment 3 times (by 3) to find another empty position, we call it 'using three probes'. The lower the number of probes - the better.  
 
-In the [src\DataStructures\HashTable\LinearProbedSimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/LinearProbedSimpleHashTable.java), linear probing technique is added to the previous [\src\DataStructures\HashTable\SimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/SimpleHashTable.java).
+In this linear probing technique is added to the previous simple hash table implementation. 
+
+```java
+package DataStructures.HashTable;
+
+import DataStructures.Employee;
+import DataStructures.StoredEmployee;
+
+public class LinearProbedSimpleHashTable {
+    private StoredEmployee[] hashTable;
+
+    public LinearProbedSimpleHashTable() {
+        hashTable = new StoredEmployee[10];
+    }
+
+    private int hashKey(String key) {
+        return key.length() % hashTable.length;
+    }
+
+    private boolean occupied(int index) {
+        return hashTable[index] != null;
+    }
+
+    public void put(String key, Employee employee) {
+        int hashedKey = hashKey(key);
+        if (occupied(hashedKey)) {
+            int stopIndex = hashedKey;
+            // The first probe
+            if (hashedKey == hashTable.length - 1) {
+                hashedKey = 0;
+            } else {
+                hashedKey++;
+            }
+
+            // Probing more and Wrapping
+            while (occupied(hashedKey) && hashedKey != stopIndex) {
+                hashedKey = (hashedKey + 1) % hashTable.length;
+            }
+        }
+
+        // All the indices are occupied
+        if (occupied(hashedKey)) {
+            System.out.println("Sorry, there's already an employee at position " + hashedKey);
+        } else {    // Found a position
+            hashTable[hashedKey] = new StoredEmployee(key, employee);
+        }
+    }
+
+    public Employee get(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1) return null;
+        return hashTable[hashedKey].employee;
+    }
+
+    private int findKey(String key) {
+        int hashedKey = hashKey(key);
+        if (hashTable[hashedKey] != null && hashTable[hashedKey].key.equals(key)) {
+            return hashedKey;
+        }
+
+        int stopIndex = hashedKey;
+        // The first probe
+        if (hashedKey == hashTable.length - 1) {
+            hashedKey = 0;
+        } else {
+            hashedKey++;
+        }
+
+        // Probing more and Wrapping
+        while (hashedKey != stopIndex && hashTable[hashedKey] != null && ! hashTable[hashedKey].key.equals(key)) {
+            hashedKey = (hashedKey + 1) % hashTable.length;
+        }
+
+        if (hashTable[hashedKey] != null && hashTable[hashedKey].key.equals(key)) {
+            return hashedKey;
+        }
+        return -1;
+    }
+
+    public Employee remove(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1) return null;
+
+        Employee employee = hashTable[hashedKey].employee;
+        hashTable[hashedKey] = null;
+        return employee;
+    }
+
+    public void printHashTable() {
+        for (int i = 0; i < hashTable.length; i++) {
+            if (hashTable[i] == null) {
+                System.out.println("empty");
+            } else {
+                System.out.println("pos: " + i + " -> " + hashTable[i].employee + " ");
+            }
+        }
+    }
+}
+```
 
 ### Rehashing 
 
