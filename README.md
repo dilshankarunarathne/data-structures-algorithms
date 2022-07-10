@@ -1209,6 +1209,179 @@ In this case, all we do is - we replace the node we're deleting with its only ch
 * If taking it from the right subtree, we have to take the smallest value in the right subtre 
 * Choose one and stick to it
 
+**Main.java**
+```java
+package DataStructures.Trees;
+
+public class Main {
+    public static void main(String[] args) {
+        Tree intTree = new Tree();
+
+        intTree.insert(25);
+        intTree.insert(13);
+        intTree.insert(52);
+        intTree.insert(48);
+        intTree.insert(68);
+        intTree.insert(35);
+        intTree.insert(26);
+        intTree.insert(74);
+        intTree.insert(19);
+
+        intTree.traverseInOrder();
+
+        System.out.println(intTree.get(35));
+        System.out.println(intTree.get(27));
+
+        System.out.println(intTree.min());
+        System.out.println(intTree.max());
+
+        intTree.delete(68);
+        intTree.traverseInOrder();
+        intTree.delete(25);
+        intTree.traverseInOrder();
+        intTree.delete(99);
+        intTree.traverseInOrder();
+    }
+}
+```
+
+**TreeNode.java**
+```java
+package DataStructures.Trees;
+
+public class TreeNode {
+    private int data;
+    private TreeNode leftChild;
+    private TreeNode rightChild;
+
+    public TreeNode(int data) {
+        this.data = data;
+    }
+
+    public int max() {
+        if (rightChild == null) return data;
+        return rightChild.max();
+    }
+
+    public int min() {
+        if (leftChild == null) return data;
+        return leftChild.min();
+    }
+
+    public TreeNode get(int value) {
+        if (value == data) return this;
+        if (value < data) {
+            if (leftChild != null) return leftChild.get(value);
+        } else {
+            if (rightChild != null) return rightChild.get(value);
+        }
+        return null;
+    }
+
+    public void insert(int value) {
+        if (value == data) return;
+        if (value < data) {
+            if (leftChild == null) leftChild = new TreeNode(value);
+            else leftChild.insert(value);
+        } else {
+            if (rightChild == null) rightChild = new TreeNode(value);
+            else rightChild.insert(value);
+        }
+    }
+
+    public void traverseInOrder() {
+        if (leftChild != null) leftChild.traverseInOrder();
+        System.out.print(data + ", ");
+        if (rightChild != null) rightChild.traverseInOrder();
+    }
+
+    @Override
+    public String toString() {
+        return "Data = " + data;
+    }
+
+    public int getData() {
+        return data;
+    }
+
+    public void setData(int data) {
+        this.data = data;
+    }
+
+    public TreeNode getLeftChild() {
+        return leftChild;
+    }
+
+    public void setLeftChild(TreeNode leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public TreeNode getRightChild() {
+        return rightChild;
+    }
+
+    public void setRightChild(TreeNode rightChild) {
+        this.rightChild = rightChild;
+    }
+}
+```
+
+**Tree.java** 
+```java
+package DataStructures.Trees;
+
+public class Tree {
+    private TreeNode root;
+
+    public void delete(int value) {
+        root = delete(root, value);
+    }
+
+    private TreeNode delete(TreeNode subTreeRoot, int value) {
+        if (subTreeRoot == null) return null;
+
+        if (value < subTreeRoot.getData()) subTreeRoot.setLeftChild(delete(subTreeRoot.getLeftChild(), value));
+        else if (value > subTreeRoot.getData()) subTreeRoot.setRightChild(delete(subTreeRoot.getRightChild(), value));
+        else {
+            // Cases 1 and 2: node to delete has 0 or 1 child(ren)
+            if (subTreeRoot.getLeftChild() == null) return subTreeRoot.getRightChild();
+            else if (subTreeRoot.getRightChild() == null) return subTreeRoot.getLeftChild();
+
+            // Case 3: node to delete has two children
+            subTreeRoot.setData(subTreeRoot.getRightChild().min());
+            subTreeRoot.setRightChild(delete(subTreeRoot.getRightChild(), subTreeRoot.getData()));
+        }
+
+        return subTreeRoot;
+    }
+
+    public void insert(int value) {
+        if (root == null) root = new TreeNode(value);
+        else root.insert(value);
+    }
+
+    public int min() {
+        if (root == null) return Integer.MIN_VALUE;
+        return root.min();
+    }
+
+    public int max() {
+        if (root == null) return Integer.MAX_VALUE;
+        return root.max();
+    }
+
+    public TreeNode get(int value) {
+        if (root != null) return root.get(value);
+        return null;
+    }
+
+    public void traverseInOrder() {
+        if (root != null) root.traverseInOrder();
+        System.out.println();
+    }
+}
+```
+
 There are not a lot of tree implementations in the JDK. The one that we'll probably use is [java.util.TreeMap](https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html) class.  
 It takes key-value pairs. It says, **it is a Red-Black tree based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.**   
 Red-Black trees are self-balancing trees. That does not mean they are always perfectly balanced. But they are the best available and highly used tree structure these days because - they have a good tradeoff between balancing a tree to a good enough degree and performance.  
