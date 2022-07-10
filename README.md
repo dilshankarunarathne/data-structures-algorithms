@@ -1276,7 +1276,29 @@ public class MaxHeap {
 There is nothing much to tell about this. It just traverse through the entire data set, and check if the value at each index matches the given search key.  
 In the worst case, it takes O(n) time.  
 
-A simple implementation of the linear search algorithm: [/src/Searching/LinearSearch.java](/src/Searching/LinearSearch.java)  
+A simple implementation of the linear search algorithm: 
+
+```java
+package Searching;
+
+public class LinearSearch {
+    public static void main(String[] args) {
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        System.out.println(linearSearch(intArray, -15));
+        System.out.println(linearSearch(intArray, -22));
+        System.out.println(linearSearch(intArray, 55));
+        System.out.println(linearSearch(intArray, -9));
+    }
+
+    public static int linearSearch(int[] input, int value) {
+        for (int i = 0; i < input.length; i ++) {
+            if (input[i] == value) return i;
+        }
+        return -1;
+    }
+}
+```
 
 # Binary Search 
 
