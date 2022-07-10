@@ -1,4 +1,4 @@
-# Data structures and algorithms 
+# Data structures and Algorithms 
 
 ## Introduction to Data Structures 
 
