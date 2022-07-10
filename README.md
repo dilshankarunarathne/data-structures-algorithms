@@ -649,7 +649,7 @@ public class InsertionSort {
 
 ### Shell Sort
 
-![17-shell-sort-attributes](C:\Projects\data-structures-and-algorithms-note\assets\17-shell-sort-attributes.png "17-shell-sort-attributes")
+![17-shell-sort-attributes](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/17-shell-sort-attributes.png "17-shell-sort-attributes")
 
 The insertion sort algorithm takes quadratic time to run. But if the data set is 'nearly sorted', it runs in almost linear time. That is because it wouldn't have to do as much shifting.  
 If most of the values are already sorted, then only a few values will actually have to be inserted into the sorted partition - and the amount of shifting will be reduced.
