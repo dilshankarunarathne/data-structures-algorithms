@@ -513,7 +513,153 @@ When we enqueue items, we add them to the back. And when we dequeue items, we re
 
 The time complexity would be similar to stacks. It would depend on what we back the queue with. 
 
-Circular and non-circular array-backed implementations of a queue: [\src\DataStructures\Queue](\src\DataStructures\Queue)  
+Circular and non-circular array-backed implementations of a queue: 
+
+```java
+package DataStructures.Queue;
+
+import DataStructures.Employee;
+
+import java.util.NoSuchElementException;
+
+public class ArrayQueue {
+    private Employee[] queue;
+    private int front;
+    private int back;
+
+    public ArrayQueue(int capacity) {
+        queue = new Employee[capacity];
+    }
+
+    public void enqueue(Employee employee) {
+        if (back == queue.length) {
+            Employee[] newArray = new Employee[2 * queue.length];
+            System.arraycopy(queue, 0, newArray, 0, queue.length);
+            queue = newArray;
+        }
+
+        queue[back] = employee;
+        back++;
+    }
+
+    public Employee dequeue() {
+        if (size() == 0) throw new NoSuchElementException();
+
+        Employee employee = queue[front];
+        queue[front] = null;
+        front++;
+        if (size() == 0) {
+            front = 0;
+            back = 0;
+        }
+
+        return employee;
+    }
+
+    public Employee peek() {
+        if (size() == 0) throw new NoSuchElementException();
+
+        return queue[front];
+    }
+
+    public int size() {
+        return back - front;
+    }
+
+    public void printQueue() {
+        for (int i = front; i < back; i++) {
+            System.out.print(queue[i] + " ");
+        }
+        System.out.println();
+    }
+}
+```
+
+**CircularArrayQueue.java**
+```java
+package DataStructures.Queue;
+
+import DataStructures.Employee;
+
+import java.util.NoSuchElementException;
+
+public class CircularArrayQueue {
+    private Employee[] queue;
+    private int front;
+    private int back;
+
+    public CircularArrayQueue(int capacity) {
+        queue = new Employee[capacity];
+    }
+
+    public void enqueue(Employee employee) {
+        if (size() == queue.length - 1) {
+            int numItems = size();
+            Employee[] newArray = new Employee[2 * queue.length];
+
+            System.arraycopy(queue, front, newArray, 0, queue.length - front);
+            System.arraycopy(queue, 0, newArray, queue.length - front, back);
+
+            queue = newArray;
+
+            front = 0;
+            back = numItems;
+        }
+
+        queue[back] = employee;
+        if (back < queue.length - 1) {
+            back++;
+        } else {
+            back = 0;
+        }
+    }
+
+    public Employee dequeue() {
+        if (size() == 0) throw new NoSuchElementException();
+
+        Employee employee = queue[front];
+        queue[front] = null;
+        front++;
+        if (size() == 0) {
+            front = 0;
+            back = 0;
+        } else if (front == queue.length) {
+            front = 0;
+        }
+
+        return employee;
+    }
+
+    public Employee peek() {
+        if (size() == 0) throw new NoSuchElementException();
+
+        return queue[front];
+    }
+
+    public int size() {
+        if (front <= back) {
+            return back - front;
+        }
+        return back - front + queue.length;
+    }
+
+    public void printQueue() {
+        if (front <= back) {
+            for (int i = front; i < back; i++) {
+                System.out.print(queue[i] + " ");
+            }
+        } else {
+            for (int i = front; i < queue.length; i ++) {
+                System.out.print(queue[i] + " ");
+            }
+            for (int i = 0; i < back; i ++) {
+                System.out.print(queue[i] + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+```
 
 There is a Queue interface in the java.util package. [Java Documentation for java.util.Queue](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html)  
 If we ever want to implement our own queue, we could use the [java.util.AbstractQueue](https://docs.oracle.com/javase/8/docs/api/java/util/AbstractQueue.html) class.  
