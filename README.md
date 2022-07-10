@@ -488,9 +488,13 @@ This is a heap!
 * We put the root at `array[0]` 
 * We then traverse each level from left to right and so the left child of the root would go into `array[1]`, its right child would to into `array[2]` and so on
 
+```
+For the node at array[i]:
+left child = 2i + 1
+right child = 2i + 2 
 
-
-![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/69-heap.png "Heap")  
+parent = floor((i - 1) / 2)
+```
 
 ![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/68-heap.png "Heap")  
 
