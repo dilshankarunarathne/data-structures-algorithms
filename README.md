@@ -500,7 +500,11 @@ parent = floor((i - 1) / 2)
 
 #### Insert into Heap 
 
-* 
+* Always add new items to the end of the array 
+* Then we have to fix the heap (heapify) 
+* We compare the new items against its parent 
+* If the item is greater than its parent, we swap it with its parent
+* We then rinse and repeat until we reach the root 
 
 ![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/71-heap.png "Heap")  
 
