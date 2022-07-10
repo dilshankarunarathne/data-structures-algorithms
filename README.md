@@ -1131,7 +1131,10 @@ This is also an in-place algorithm.
 So, if we're using a heap - our motivation would be, eventually we'd be using heap sort on the data and not because we're going to use the heap as a heap.  
 In that scenario, the time for building the heap should also be taken into account. But even with that, this can be more efficient than some quadratic sort algorithms.  
 
-An implementation of heap sort -> [src/Sorting/HeapSort.java](/Sorting/HeapSort.java) 
+An implementation of heap sort -> 
+
+```java
+
 
 # Linear Search 
 
