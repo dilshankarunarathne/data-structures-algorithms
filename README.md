@@ -564,13 +564,13 @@ Bubble Sort is a stable sort algorithm. When we're comparing adjacent elements, 
 
 ### Selection Sort
 
-![Selection Sort](C:\Projects\data-structures-and-algorithms-note\assets\6-selection-sort-attributes.png "Selection Sort")
+![Selection Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/6-selection-sort-attributes.png "Selection Sort")
 
 This algorithm divides the array into sorted and unsorted partitions, just like with bubble sort.
 Then we traverse the array, and we look for the largest element in the unsorted partition.
 And when we find it, we swap it with the last element in the unsorted partition.
 
-![Selection Sort](C:\Projects\data-structures-and-algorithms-note\assets\7-selection-sort.png "Selection Sort")
+![Selection Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/7-selection-sort.png "Selection Sort")
 
 An implementation of selection sort -> [src/Sorting/SelectionSort.java](/Sorting/SelectionSort.java)
 
