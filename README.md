@@ -702,6 +702,15 @@ Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/
 
 ![knuth-sequence](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/12-knuth-sequence.png "knuth-sequence")
 
+| k    | Gap (interval) |
+|------|----------------|
+| 1    | 1              |
+| 1    | 1              |
+| 1    | 1              |
+| 1    | 1              |
+| 1    | 1              |
+| 1    | 1              |
+
 ![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/13-shell-sort.png "Shell Sort")
 
 ![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/14-shell-sort.png "Shell Sort")
