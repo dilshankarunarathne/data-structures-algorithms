@@ -830,7 +830,7 @@ public class MergeSort {
 
 ### Quick Sort
 
-![Quick Sort](C:\Projects\data-structures-and-algorithms-note\assets\22-quick-sort.png "Quick Sort")
+![Quick Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/22-quick-sort.png "Quick Sort")
 
 Quick sort is another divide and conquer algorithm - that can be implementated using recursion.  
 It chooses a pivot element to partition the array into two parts. This is also a logical division.  
@@ -853,7 +853,7 @@ An implementation of quick sort -> [src/Sorting/QuickSort.java](/Sorting/QuickSo
 
 ### Counting Sort
 
-![Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\24-counting-sort.png "Counting Sort")
+![Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/24-counting-sort.png "Counting Sort")
 
 The algorithms we've looked at so far - don't make any assumptions about the data they are sorting. The specific implementations might do - but the algorithms don't assume a certain data type - we can sort integers, strings, floats and etc.  
 They also don't assume that the data being sorted is bounded in any way. For example - they don't assume that all the values being sorted are less than 100.  
