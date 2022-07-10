@@ -145,6 +145,21 @@ public class Employee {
 }
 ```
 
+**StoredEmployee.java**
+```java
+package DataStructures;
+
+public class StoredEmployee {
+    public String key;
+    public Employee employee;
+
+    public StoredEmployee(String key, Employee employee) {
+        this.key = key;
+        this.employee = employee;
+    }
+}
+```
+
 # List 
 
 List is an abstract data type, it's not a concrete data type. Normally when it comes to abstract data types - there is an interface involved, and List is no exception.  
