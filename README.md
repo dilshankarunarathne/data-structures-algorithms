@@ -756,7 +756,7 @@ public class ShellSort {
 
 ### Merge Sort
 
-![Merge Sort](C:\Projects\data-structures-and-algorithms-note\assets\21-merge-sort.png "Merge Sort")
+![Merge Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/21-merge-sort.png "Merge Sort")
 
 Merge sort is a divide and conquer algorithm, because it involves splitting the array we want to sort - into a bunch of smaller arrays. We can also write the algorithm using loops, but usually it's written recursively.
 
@@ -776,13 +776,57 @@ We need to keep repeating this process until we have a single sorted array.
 
 The merging phase does not happen in-place, it uses temporary arrays. But the splitting phase is in-place.
 
-![Merge Sort](C:\Projects\data-structures-and-algorithms-note\assets\18-merge-sort.png "Merge Sort")
+![Merge Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/18-merge-sort.png "Merge Sort")
 
-![Merge Sort](C:\Projects\data-structures-and-algorithms-note\assets\19-merge-sort.png "Merge Sort")
+![Merge Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/19-merge-sort.png "Merge Sort")
 
-![Merge Sort](C:\Projects\data-structures-and-algorithms-note\assets\20-merge-sort.png "Merge Sort")
+![Merge Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/20-merge-sort.png "Merge Sort")
 
-An implementation of merge sort -> [src/Sorting/MergeSort.java](/Sorting/MergeSort.java)
+An implementation of merge sort -> 
+
+```java
+package Sorting;
+
+import java.util.Arrays;
+
+public class MergeSort {
+    public static void main(String[] args) {
+        int [] intArray = {20, 35, -15, 7, 55, 1, -22} ;
+
+        mergeSort(intArray, 0, intArray.length);
+
+        Arrays.stream(intArray).forEach(System.out::println);
+    }
+
+    private static void mergeSort(int[] input, int start, int end) {
+        if (end - start < 2) return;
+
+        int mid = (start + end) / 2;
+        mergeSort(input, start, mid);
+        mergeSort(input, mid, end);
+
+        merge(input, start, mid, end);
+    }
+
+    private static void merge(int[] input, int start, int mid, int end) {
+        if (input[mid - 1] <= input[mid]) {
+            return;
+        }
+
+        int i = start;
+        int j = mid;
+        int tempIndex = 0;
+
+        int[] temp = new int [end - start];
+        while (i < mid && j < end) {
+            temp[tempIndex ++] = input [i] <= input [j] ?  input [i ++] : input [j ++];
+        }
+
+        System.arraycopy(input, i, input, start + tempIndex, mid - i);
+        System.arraycopy(temp, 0, input, start, tempIndex);
+    }
+}
+```
 
 ### Quick Sort
 
