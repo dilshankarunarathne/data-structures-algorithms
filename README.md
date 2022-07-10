@@ -311,7 +311,7 @@ Also, the LinkedList class of Java also implements the Deque interface. So, we c
 But, there are other methods in these implementations. Because they implement Deque, they have `push()`, `pop()` and `peek()` methods. But they also allow random access and other operations that should not be allowed in a stack.  
 So, we could either - use one of those implementations and limit ourselves to using only the methods for a stack, to make it behave like a stack. Or, we could create our own Stack class, that is backed by one of those implementations. All we need to implement in our class is those methods we want to expose, and the implementation would be very simple.  
 
-Array and LinkedList implementations of a stack: 
+An array implementation of a stack: 
 
 ```java
 package DataStructures.Stack;
