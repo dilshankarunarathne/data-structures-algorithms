@@ -420,9 +420,62 @@ So, if we use a TreeMap, we'll be using a red-black tree in the background. It g
 **Note that this implementation is not synchronized.** If we do need synchronization the map should be wrapped using the `Collections.synchronizedSortedMap()` method.  
 
 There is also a [java.util.TreeSet](https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html) class. In sets, the data structure cannot contain duplicate elements, and it is an abstract data type. This is an implementation that is based on TreeMap.  
- 
 
-### Notes on Heaps: [Heaps.md](Heaps.md)  
+# Heaps 
+
+A heap is a special type of binary tree. Even though, the word 'heap' is commonly used in memory management, that is not what we're talking about in here.  
+
+A heap is a complete binary tree - that satisfies the heap property.  
+So, every level of the tree must be full - except, potentially the last level. And, if the last level is not complete - the existing leaves must all be as far to the left as possible.  
+The **heap property** depends on whether we're talking about a **max heap** or a **min heap**.  
+
+* Max heap: every parent has to have a value - greater than or equal to its children. 
+* Min heap: every parent has to have a value - that is less than or equal to its children. 
+
+![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/65-heap.png "Heap")  
+
+Because heaps are complete, we don't need to create our own structure to implement the backing tree. We can use arrays.  
+
+### Heapify 
+
+When we add an element to an existing tree, we add it to the first available spot at the bottom level. But, once we've done that, the tree might no longer meet the heap property. So, we need to fix the tree, and that is the process called **heapifying**.  
+We have to do this after inserting a node, and also after deleting a node.  
+
+![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/66-heap.png "Heap")  
+This is a heap!  
+
+### Heaps as Arrays 
+
+![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/67-heap.png "Heap")  
+
+![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/69-heap.png "Heap")  
+
+![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/68-heap.png "Heap")  
+
+![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/70-heap.png "Heap")  
+
+![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/71-heap.png "Heap")  
+
+![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/72-heap.png "Heap")  
+
+# Priority Queues 
+
+Queues are usually FIFO. Items are removed from the queue, in the order that they were added. But what if we want to change that slightly and, if we always want to access the highest priority item. When we add an item - we assign it a priority, and when we remove an item, the highest priority item is the one that's removed. So, it's not FIFO anymore.  
+For example, think of a queue at a hospital. Usually it's FIFO, but if there's an emergency - someone with high priority gets to go first.  
+
+So, a heap is an ideal data strucutre for this. The value with the highest priority will always be placed at the root, so when we want to remove the highest priority item from a **max heap**, we can just remove the root.  
+
+When it comes to priority queues, the common operations are:  
+`insert` with priority, remove the highest priority item - which is called `poll` and `peek` which will return the item with the highest priority without removing it from the heap.  
+
+Java has a [java.util.PriorityQueue](https://docs.oracle.com/javase/7/docs/api/java/util/PriorityQueue.html) class. This is an unbounded priority queue, based on a priority heap - so there is no limit on the number of items.  
+What is interesting about this priority queue class is - it's actually a min heap. So, if we use an <Integer> PriorityQueue, the lower our number - the higher priority it has.  
+It's also an array implementation, so that array is automatically resized.  
+It is also not synchronized. If we want to use it with multiple threads, we should use a java.uti.PriorityBlockingQueue instead.  
+We can use PriorityQueue with any type of object, as long as that class implements the Comparable interface. Or, we can pass a Comparator when we construct the PriorityQueue. If we wanted a max heaped priority queue, we can provide a Comparator with the constructor.  
+
+Check out Heap Sort algorithm: [Sorting.md](Sorting.md)
+
 
 ### Notes on Sets: [Sets.md](Sets.md)  
 
