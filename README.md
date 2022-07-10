@@ -54,11 +54,15 @@ We could take the average case, but that's not going to tell us the absolute-wor
 * If we know the index of an element, the time to retrieve the element will be the same, no matter where it is in the array.  
 
 
-| Operation                        | Time Complexity             |
-|----------------------------------|-----------------------------|
-| Retrieve with index              | O(1) - Constant Time        |
-| Retrieve without index           | O(n) - Linear Time          |
-
+| Operation                                          | Time Complexity       |
+|----------------------------------------------------|-----------------------|
+| Retrieve with index                                | O(1) - Constant Time  |
+| Retrieve without index                             | O(n) - Linear Time    |
+| Add an element to a full array                     | O(n)                  |
+| Add an element to the end of the array (has space) |
+| Insert or update an element at a specific index    |
+| Delete an element by setting it to null            |
+| Delete an element by shifting elements             |
 
 # Data Structures 
 
