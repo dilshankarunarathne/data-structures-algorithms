@@ -953,7 +953,7 @@ This implementation of counting sort is not stable. But with additional steps - 
 
 ### Radix Sort
 
-![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\29-radix-sort.png "Radix Sort")
+![Radix Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/29-radix-sort.png "Radix Sort")
 
 This is another algorithm that makes assumptions about the data it's sorting. And in this case - the assumptions that is makes is that the data has the same radix and width.
 
@@ -967,11 +967,11 @@ Radix sort - sorts based on each individual digit or letter positions. We start 
 
 **Critical Point**: This is a stable sort! **We have to use a stable sort algorithm at each stage.**
 
-![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\25-radix-sort.png "Radix Sort")  
+![Radix Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/25-radix-sort.png "Radix Sort")  
 1's position is the rightmost digit in each integer.  
-![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\26-radix-sort.png "Radix Sort")  
-![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\27-radix-sort.png "Radix Sort")  
-![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\28-radix-sort.png "Radix Sort")
+![Radix Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/26-radix-sort.png "Radix Sort")  
+![Radix Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/27-radix-sort.png "Radix Sort")  
+![Radix Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/28-radix-sort.png "Radix Sort")
 
 If it wasn't stable, radix sort wouldn't work. Because in each stage, we need to keep the sorting we did in the previous stage.
 
