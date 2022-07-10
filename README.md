@@ -1315,7 +1315,9 @@ And then we repeat that process until either we find the our search value, or we
 
 At each rinse and repeat step - we're dividing the array in half, just like we did with merge sort. Because of this, we can implement this algorithm recursively. 
 
-![Binary Search](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/54-binary-search.png "Binary Search")  
+* At some point, there will be only one element in the partition you're checking, but it doesn't have to get to that point 
+* Can be implemented recursively 
+* O(logn) - keeps deviding the array in half
 
 A simple implementation of a linear binary search algorithm: 
 
