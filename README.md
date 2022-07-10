@@ -226,8 +226,109 @@ The [java.util.LinkedList](https://docs.oracle.com/javase/8/docs/api/java/util/L
 
 Java has an  [java.util.ArrayDeque](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayDeque.html) class, which is a resizable array implementation of the [Deque](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html) interface. So it has no capacity restrictions.  
 
+# Hash Tables 
 
-### Notes on Hash Tables: [HashTables.md](HashTables.md)  
+Hash Table is an abstract data type. So it doesn't dictate how we store the data. We can back a hash table with whatever we want.  
+Hash tables consist of key-value pairs. They provide fast-direct access to values using keys.  
+When we add an item, we provide the key and the value. And when we want to retrieve the item, we need to provide the key - with that the hash table can very quickly retrieve the value. Hash tables are optimized for retrieval (when we know the key).  
+
+Just like with arrays, we can think of array's index as the key. But with hash tables, the key doesn't have to be an integer. It can be any object.  
+
+Associative arrays in PHP, dictionaries in Python and Maps in Java are types of hash tables. 
+
+## Hashing 
+
+Since a key can be any type of objects, under the covers - those keys are being converted to integers.  
+One common way of backing a hash table is to use an array. And for an array, we have to have integer indices.  
+To convert keys to integers we use hashing. Hashing maps keys of any data type to an integer. So essentially, a hash function maps keys to int.  
+
+In Java, the hash function is `hashCode()` in the [java.lang.Object](https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html) class. So, every class in Java has a `hashCode()` method. It is usually overridden.  
+
+It is possible for a hash function to produce the same hash for two (or more) different value. That is known as a collision. There are strategies for dealing with collisions.  
+
+## Load Factor 
+
+The load factor tells us how full a hash table is. For example, if we are backing a hash table with an array, the load factor will tell us how full the backing array is.  
+
+Load factor = number of items / capacity  
+Load factor = size / capacity  
+
+This is a balancing factor. We don't want the load factor to be too high - which means the array is almost full, or it to be too low - which means most of the space is unoccupied.  
+Load factor being high - array being almost full means, there is a higher likelihood of collisions.  
+
+Load factor can play a role in determining the time complexity for retrieval.  
+
+![Hash Table](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/51-hash-table.png "Hash Table")  
+![Hash Table](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/52-hash-table.png "Hash Table")  
+
+## Linear Probing 
+
+Check out [\src\DataStructures\HashTable\SimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/src/DataStructures/HashTable/SimpleHashTable.java). It is an implementation that uses a very simple hashing function. We just use the modulo operator on the length of the backing array by the length of the key. That would give us an integer that's in the range of backing array's indices.  
+But this could easily run into collisions. If more than one key has the same length, they get the same hash. To handle collisions in this, all we do is printing out a message to the console.  
+
+To handle or prevent collisions in hashing, there are more sensible strategies that we could use. One of those is called **Open Addressing**. With open addressing, if a value already exists within a given index - taken by hashing a key (a different key), we just figure out a way to address another slot for the value.  
+
+One way to do that is with **Linear Probing**. When we discover that a position for a hashed-key value is already occupied, we increment the hashed value by one. And then we check the resulting index.  
+This is called a linear probing, because every time we increment the index - and that happens in a linear fashion, and every increment of the index is called a probe.  
+Meaning, if we have to increment the index by one to find another position - we call it 'using one probe'. If we have to increment 3 times (by 3) to find another empty position, we call it 'using three probes'. The lower the number of probes - the better.  
+
+In the [src\DataStructures\HashTable\LinearProbedSimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/LinearProbedSimpleHashTable.java), linear probing technique is added to the previous [\src\DataStructures\HashTable\SimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/SimpleHashTable.java).
+
+### Rehashing 
+
+That implementation still has a problem. After we have added a few items, and there are more than two elements that hashes to the same hashed index, we'd be putting those elements by linear probing more than once.  
+For example, think we have elements X, Y, and Z - that has the same hashed index. So, we put X and then linear probe to add Y, and then again we linear probe to add Z.  
+And, when we remove elements, if we remove one of the elements that were probed, that element would be set to null. And think, we remove Y. Then it would be set to null. Then, when we try to remove or get Z - we would not find it in the hash table. Because linear probed element in the middle does not exist now, it will stop probing from there.  
+
+To get around this, there is a approac - to rehash the entire hash table. We need to rehash the table either at each add, or at each remove. The choice is ours - where we want to take this huge performance hit.  
+
+The [src\DataStructures\HashTable\RehashedLinearProbedSimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/RehashedLinearProbedSimpleHashTable.java) class is just as the [src\DataStructures\HashTable\LinearProbedSimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/LinearProbedSimpleHashTable.java) - but it rehashes the table at each removal. 
+
+There is another variation of linear probing called **quardratic probing**. With that, instead of incrementing the hashed value by one, we increment it by some constant sqares. For example, we start our probing with incrementing by 1<sup>2</sup>, and then we increment by 2<sup>2</sup>, then 3<sup>2</sup>...  
+
+## Chaining 
+
+This is an alternative strategy to linear probing to deal with collisions. With this, instead of storing the values directly in the backing array, we store linked lists at each array position.  
+When we go to add an element, and the key that we use has a hashed value that collides with the hashed value of another element in the hash table, that would not make any trouble. Because at each position in the array, there is a linked list. So, we can just add the second element to that linked list.  
+
+The drawback with this approach is, at each get or removal, we have to search the entire linked list for the element with the key we're interested in. But, with a good hashing function and a good load factor, these linked lists will typically be short.  
+
+When we use this approach, we need to initialize each array position with a linked list. We could do that either in the constructor for the hash table, or at each add call.  
+Also, some implement this technique - backed by an Object array. If we get a collision, we store a linked list at that index. Otherwise, we can just store the value.  
+
+The [src\DataStructures\HashTable\ChainedHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/ChainedHashTable.java) class is an implementation of a hash table that uses chaining instead of linear probing.  
+
+In reality, most of the time - linear probing would be faster than chaining. And without having to use linked lists, we also don't get the redundant memory usage. But chaining is much simpler to implement than linear probing.  
+
+## JDK implementations 
+
+[java.util.Map](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html) is the primary interface of Hash Tables in the JDK.  
+**An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.**  
+This doesn't mean that there cannot be collisions. This tells, for only one key - there can be one value. That makes sense, because otherwise we will not be able to identify which value should we return for that key.  
+
+[java.util.HashMap](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html) is a concrete implementation of [Map](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html) interface.  
+It permits constant time on all basic operations - unless it has to resize the backing array, or rehash the table. But it also allows us to set the load factor that we want - an when that load factor is exceeded, the hash table is resized. The default load factor is 0.75.  
+
+This implementation is not synchronized. If we want to use if for multiple threads, we can wrap it using the `Collections.synchronizedMap()` method.  
+
+One subclass of [HashMap](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html) is [java.util.LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html).  
+**Hash table and linked list implementation** of the Map interface, with predictable iteration order. This implementation differs from HashMap in that it maintains a doubly-linked list running through all of its entries. This linked list defines the iteration ordering, which is normally the order in which keys were inserted into the map.  
+It is still backed by an array. But it also put all of its entries to a linked list. This is also not synchronized, we can use `synchronizedMap()` just as before to synchronize it.  
+
+In this implementation, there is a `removeEldestEntry(Map.Entry)` method. With that, we can remove the oldest entry from the map - every time we add a new one.  
+This is useful, when we use the map instance as a chache. In that case, we wouldn't want the map to keep growing - because for a cache, it's to provide instance access for things we used recently. That's why we would want to remove the oldest (the one that's been in the list for the longest) entry.  
+
+There is also a [java.util.Hashtable](https://docs.oracle.com/javase/8/docs/api/java/util/Hashtable.html) class. This differs from HashMap in a couple of ways.  
+First of all, with this - we cannot add null keys or values. But HashMap allows to add null values.  
+This is also a synchronized implementation. This falls to the same situation as it was with Vector and ArrayList.  
+
+But, if we ever want a synchronized implementation, we could wrap any other implementations with the `Collections.synchronizedMap()` method.  
+Or, there is also a [java.util.Concurrent.ConcurrentHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html) class. This is a synchronized implementation, and it supports full concurrenct of retrievals and high expected concurrency for updates.  
+
+There is a lot of support in the JDK for Hash Tables. So, if we want to use a hash table in our application, under specific circumtances - there sure will be a suitable implementation already in the JDK.  
+
+Check out [Bucket Sorting](/Sorting.md), it is a important sorting algorithm in hash tables. 
+
 
 ### Notes on Trees: [Trees.md](Trees.md)  
 
