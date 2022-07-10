@@ -705,11 +705,10 @@ Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/
 | k    | Gap (interval) |
 |------|----------------|
 | 1    | 1              |
-| 1    | 1              |
-| 1    | 1              |
-| 1    | 1              |
-| 1    | 1              |
-| 1    | 1              |
+| 2    | 1              |
+| 3    | 1              |
+| 4    | 1              |
+| 5    | 1              |
 
 ![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/13-shell-sort.png "Shell Sort")
 
