@@ -150,7 +150,44 @@ Whenever we want to use a linked list in Java, we could use the LinkedList class
 There's another linked list type called **Circular Linked List**. This is a variation on the singly linked list. In this variation - the last node in the list doesn't point to null. Instead it loops back and points to the head of the list.  
 An advantage of this is, we can traverse the entire list - starting from any node.  
 
-### Notes on Stacks: [Stacks.md](Stacks.md)  
+# Stack 
+
+A stack is an abstract (conceptual) data type - because, instead of dictating how we store the items, stacks dictate what operations we can do on the items.  
+
+**LIFO** - Last in First out  
+The last element we add to a stack is the first element we can remove from that stack. So, there is no random access. We are only allowed to remove the last added item.  
+
+The call stack of Java is an example for stacks. The last method that we called is always the first one that got taken off the call stack. 
+
+We can perform three operations on a stack:
+* push - adds an item as the top item on the stack 
+* pop - removes the top item on the stack 
+* peek - gets the top item on the stack without popping it 
+
+A stack can be backed by any data structure. But the ideal data structure for backing a stack is a linked list.  
+With a singly linked list - we always work with the item at the front of the list.  
+The last element we added get set to the head (or in this case the top). And whenever we remove an item, we always remove the head. So, we can perform all the operations in constant time.  
+
+![Stack](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/50-stack.png "Stack")
+
+The Stack implementation of Java - [java.util.Stack](https://docs.oracle.com/javase/7/docs/api/java/util/Stack.html)  
+We could use this stack at any time for our purposes in Java.  
+
+But, in this Java doc for the class Stack, it says **A more complete and consistent set of LIFO stack operations is provided by the Deque interface and its implementations, which should be used in preference to this class.**  
+So it says, instead of using this class, we should use a class that implements the Deque interface.  
+
+If we want a stack in our Java application, we could `Deque<Integer> stack = new ArrayDeque<Integer>();`. 
+It is an implementation of the Deque interface that is backed by an array.  
+Also, the LinkedList class of Java also implements the Deque interface. So, we could use that - if we don't want the resizing overhead.  
+
+But, there are other methods in these implementations. Because they implement Deque, they have `push()`, `pop()` and `peek()` methods. But they also allow random access and other operations that should not be allowed in a stack.  
+So, we could either - use one of those implementations and limit ourselves to using only the methods for a stack, to make it behave like a stack. Or, we could create our own Stack class, that is backed by one of those implementations. All we need to implement in our class is those methods we want to expose, and the implementation would be very simple.  
+
+Array and LinkedList implementations of a stack: [\src\DataStructures\Stack](\src\DataStructures\Stack)  
+
+Note that this LinkedList is a doubly-linked list. If memory is an issue, we'd have to implement our own singly-linked list class. 
+
+
 
 ### Notes on Queues: [Queues.md](Queues.md)  
 
