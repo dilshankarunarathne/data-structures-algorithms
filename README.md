@@ -756,7 +756,8 @@ public class ShellSort {
 
 ### Merge Sort
 
-![Merge Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/21-merge-sort.png "Merge Sort")
+* Not an in-place algorithm 
+* 
 
 Merge sort is a divide and conquer algorithm, because it involves splitting the array we want to sort - into a bunch of smaller arrays. We can also write the algorithm using loops, but usually it's written recursively.
 
