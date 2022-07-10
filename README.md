@@ -1054,7 +1054,7 @@ public class RadixSort {
 
 ## Bucket Sort 
 
-![Bucket Sort](\assets\53-bucket-sort.png "Bucket Sort")
+![Bucket Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/53-bucket-sort.png "Bucket Sort")
 
 For this, we need a clear understanding about hashing. Check out [HashTables](HashTables.md) before reading this note.  
 This algorithm uses hashing, and it makes assumptions about the data - and because of that, it can achive linear time. It performs best when the hashed balues of the items being sorted are evenly distributed - so there aren't many collisions.  
@@ -1079,7 +1079,7 @@ An implementation of bucket sort -> [src/Sorting/BucketSort.java](/Sorting/Bucke
 
 This sort algorithm can only sort a heap. For either min or max heap - the theory would be the same, only the implementation will be slightly different. In this note, we'll look at max heaps.  
 
-![Heap Sort](\assets\73-heap-sort.png "Heap Sort")  
+![Heap Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/73-heap-sort.png "Heap Sort")  
 
 The worst case time complexity for this is O(nlogn), because we swap n elements and then on each iteration of the loop, we have to fix the heap.  
 This is also an in-place algorithm.  
