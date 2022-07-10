@@ -564,7 +564,11 @@ Bubble Sort is a stable sort algorithm. When we're comparing adjacent elements, 
 
 ### Selection Sort
 
-![Selection Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/6-selection-sort-attributes.png "Selection Sort")
+* In-place algorithm
+* O(n<sup>2</sup>) time complexity - quadratic
+* It will take 100 steps to sort 10 items, 10000 steps to sort 100 items, 1000000 steps to sort 1000 items
+* Doesn't require as much swapping as bubble sort
+* Unstable sort algorithm
 
 This algorithm divides the array into sorted and unsorted partitions, just like with bubble sort.
 Then we traverse the array, and we look for the largest element in the unsorted partition.
