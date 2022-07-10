@@ -78,7 +78,7 @@ In Java, a concrete data structure is usually a class (array might be an excepti
 So, any data structure can be used to implement an abstract data type. As long as we have a class that implements the interface for the abstract data type, any class can behave like that abstract data type.  
 In case of lists, any class that implement the List interface is a list. So, we can have a class that uses an array to implement the List interface.  
 
-**Note that, for all the examples of data structures below, we will be using objects of type `Employee` and `StoredEmployee` implemented as follow.**
+**Note that, for some of the examples of data structures below, we will be using objects of type `Employee` and `StoredEmployee` implemented as follow.**
 
 **Employee.java**
 ```java
