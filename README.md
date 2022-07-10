@@ -437,7 +437,7 @@ This case is really easy. All we need to do is null out the node - from the pare
 2. Node has only one child.  
 In this case, all we do is - we replace the node we're deleting with its only child. 
 3. Node has two children.  
-![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/64-bst.png "Binary Search Tree")  
+
 
 There are not a lot of tree implementations in the JDK. The one that we'll probably use is [java.util.TreeMap](https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html) class.  
 It takes key-value pairs. It says, **it is a Red-Black tree based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.**   
