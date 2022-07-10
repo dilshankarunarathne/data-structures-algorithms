@@ -484,7 +484,11 @@ This is a heap!
 
 ### Heaps as Arrays 
 
-![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/67-heap.png "Heap")  
+* We can store binary heaps as arrays 
+* We put the root at `array[0]` 
+* We then traverse each level from left to right and so the left child of the root would go into `array[1]`, its right child would to into `array[2]` and so on
+
+
 
 ![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/69-heap.png "Heap")  
 
