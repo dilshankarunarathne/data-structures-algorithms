@@ -668,8 +668,16 @@ If most of the values are already sorted, then only a few values will actually h
 
 A computer scientist named Donald Shell realised that if we could cut down on the amount of shifting, the insertion sort algorithm would run a lot faster. That is the concept of Shell sort algorithm.
 
-![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/10-shell-sort.png "Shell Sort")  
-![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/11-shell-sort.png "Shell Sort")
+* Variation of Insertion Sort 
+* Insertion sort chooses which element to insert using a gap of 1
+* Shell sort starts out using a larger gap value
+* As the algorithm runs, the gap is reduced
+* Goal is to reduce the amount of shifting required 
+* As the algorithm progresses, the gap is reduced 
+* The last gap value is always 1
+* A gap value of 1 is equivalent to insertion sort 
+* So, the algorithm does some preliminary work (using gap values greater than 1), and then becomes insertion sort
+* By the time we get to insertion sort, the array has been partially sorted, so there's less shifting required 
 
 Basically, it would do an insertion sort on values that are already objected to some preliminary sorting. Because of that there will be a lot less shifting required.
 
