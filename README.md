@@ -392,7 +392,11 @@ In practice, we only use binary search trees. The reason they are very popular i
 They also have faster searching than unsorted arrays do, but equivalent time complexity to sorted arrays.  
 With BSTs, every node that is left from a parent node is lower than the parent node. And everything that is right to a parent node is greater than the parent node.  
 
-![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/59-binary-search-tree.png "Binary Search Tree")  
+* Can perform insertions, deletions and retrievals in O(logn) time 
+* The left child always has a smaller value than its parent 
+* The right child always has a larger value than its parent 
+* This means everything to the left of the root is less than the value of the root, and everything to the right of the root is greater than the value of the root 
+* Because of that, we can do a binary search
 
 ![Binary Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/56-binary-tree.png "Binary Tree")  
 
