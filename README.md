@@ -778,7 +778,10 @@ The merging phase does not happen in-place, it uses temporary arrays. But the sp
 
 ![Merge Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/18-merge-sort.png "Merge Sort")
 
-![Merge Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/19-merge-sort.png "Merge Sort")
+* We merge sibling left and right arrays 
+* We create a temporary array large enough to hold all the elements in the array we're merging 
+* We set **i** to the first index of the left array, and **j** to the first index of the right array 
+* We compare `left[i]` to `left[j]`. If left is smaller, we copy it to the temp array and increment `i` by 1. If right is smaller, we copy it to the temp array and increment `j` by 1.
 
 ![Merge Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/20-merge-sort.png "Merge Sort")
 
