@@ -621,7 +621,7 @@ When we're inserting, we compare the value we're inserting with the values in th
 
 ![Insertion Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/9-insertion-sort.png "Insertion Sort")
 
-An implementation of selection sort -> [src/Sorting/InsertionSort.java](/Sorting/InsertionSort.java)
+An implementation of insertion sort -> [src/Sorting/InsertionSort.java](/Sorting/InsertionSort.java)
 
 ### Shell Sort
 
