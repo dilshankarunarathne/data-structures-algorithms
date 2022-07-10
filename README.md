@@ -884,7 +884,114 @@ And, when we remove elements, if we remove one of the elements that were probed,
 
 To get around this, there is a approac - to rehash the entire hash table. We need to rehash the table either at each add, or at each remove. The choice is ours - where we want to take this huge performance hit.  
 
-The [src\DataStructures\HashTable\RehashedLinearProbedSimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/RehashedLinearProbedSimpleHashTable.java) class is just as the [src\DataStructures\HashTable\LinearProbedSimpleHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/LinearProbedSimpleHashTable.java) - but it rehashes the table at each removal. 
+This is just as the LinearProbedSimpleHashTable - but it rehashes the table at each removal. 
+
+```java
+package DataStructures.HashTable;
+
+import DataStructures.Employee;
+import DataStructures.StoredEmployee;
+
+public class RehashedLinearProbedSimpleHashTable {
+    private StoredEmployee[] hashTable;
+
+    public RehashedLinearProbedSimpleHashTable() {
+        hashTable = new StoredEmployee[10];
+    }
+
+    private int hashKey(String key) {
+        return key.length() % hashTable.length;
+    }
+
+    private boolean occupied(int index) {
+        return hashTable[index] != null;
+    }
+
+    public void put(String key, Employee employee) {
+        int hashedKey = hashKey(key);
+        if (occupied(hashedKey)) {
+            int stopIndex = hashedKey;
+            // The first probe
+            if (hashedKey == hashTable.length - 1) {
+                hashedKey = 0;
+            } else {
+                hashedKey++;
+            }
+
+            // Probing more and Wrapping
+            while (occupied(hashedKey) && hashedKey != stopIndex) {
+                hashedKey = (hashedKey + 1) % hashTable.length;
+            }
+        }
+
+        // All the indices are occupied
+        if (occupied(hashedKey)) {
+            System.out.println("Sorry, there's already an employee at position " + hashedKey);
+        } else {    // Found a position
+            hashTable[hashedKey] = new StoredEmployee(key, employee);
+        }
+    }
+
+    public Employee get(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1) return null;
+        return hashTable[hashedKey].employee;
+    }
+
+    private int findKey(String key) {
+        int hashedKey = hashKey(key);
+        if (hashTable[hashedKey] != null && hashTable[hashedKey].key.equals(key)) {
+            return hashedKey;
+        }
+
+        int stopIndex = hashedKey;
+        // The first probe
+        if (hashedKey == hashTable.length - 1) {
+            hashedKey = 0;
+        } else {
+            hashedKey++;
+        }
+
+        // Probing more and Wrapping
+        while (hashedKey != stopIndex && hashTable[hashedKey] != null && ! hashTable[hashedKey].key.equals(key)) {
+            hashedKey = (hashedKey + 1) % hashTable.length;
+        }
+
+        if (hashTable[hashedKey] != null && hashTable[hashedKey].key.equals(key)) {
+            return hashedKey;
+        }
+        return -1;
+    }
+
+    public Employee remove(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1) return null;
+
+        Employee employee = hashTable[hashedKey].employee;
+
+        // Rehashing
+        StoredEmployee[] oldHashTable = hashTable;
+        hashTable = new StoredEmployee[oldHashTable.length];
+        for (int i = 0; i < oldHashTable.length; i ++) {
+            if (oldHashTable[i] != null) {
+                put(oldHashTable[i].key, oldHashTable[i].employee);
+            }
+        }
+
+        return employee;
+    }
+
+    public void printHashTable() {
+        for (int i = 0; i < hashTable.length; i++) {
+            if (hashTable[i] == null) {
+                System.out.println("empty");
+            } else {
+                System.out.println("pos: " + i + " -> " + hashTable[i].employee + " ");
+            }
+        }
+    }
+}
+```
 
 There is another variation of linear probing called **quardratic probing**. With that, instead of incrementing the hashed value by one, we increment it by some constant sqares. For example, we start our probing with incrementing by 1<sup>2</sup>, and then we increment by 2<sup>2</sup>, then 3<sup>2</sup>...  
 
