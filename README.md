@@ -159,6 +159,121 @@ Whenever we want to use a linked list in Java, we could use the LinkedList class
 There's another linked list type called **Circular Linked List**. This is a variation on the singly linked list. In this variation - the last node in the list doesn't point to null. Instead it loops back and points to the head of the list.  
 An advantage of this is, we can traverse the entire list - starting from any node.  
 
+**Main.java**
+```java
+package DataStructures.LinkedList;
+
+import DataStructures.Employee;
+
+public class Main {
+    public static void main(String[] args) {
+        Employee johnJones = new Employee("John", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 456);
+        Employee marySmith = new Employee("Mary", "Smith", 789);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 147);
+
+        EmployeeSinglyLinkedList list = new EmployeeSinglyLinkedList();
+
+        System.out.println(list.isEmpty());
+
+        list.addToFront(johnJones);
+        list.addToFront(johnDoe);
+        list.addToFront(marySmith);
+        list.addToFront(mikeWilson);
+
+        System.out.println(list.getSize());
+
+        list.printList();
+
+        list.removeFromFront();
+        System.out.println(list.getSize());
+        list.printList();
+    }
+}
+```
+**EmployeeNode.java**
+```java
+package DataStructures.LinkedList;
+
+import DataStructures.Employee;
+
+public class EmployeeNode {
+    private Employee employee;
+    private EmployeeNode next;
+
+    public EmployeeNode(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public EmployeeNode getNext() {
+        return next;
+    }
+
+    public void setNext(EmployeeNode next) {
+        this.next = next;
+    }
+
+    @Override
+    public String toString() {
+        return employee.toString();
+    }
+}
+```
+**EmployeeSinglyLinkedList.java**
+```java
+package DataStructures.LinkedList;
+
+import DataStructures.Employee;
+
+public class EmployeeSinglyLinkedList {
+    private EmployeeNode head;
+    private int size;
+
+    public void addToFront(Employee employee) {
+        EmployeeNode node = new EmployeeNode(employee);
+        node.setNext(head);
+        head = node;
+        size++;
+    }
+
+    public Employee removeFromFront() {
+        if (isEmpty()) return null;
+
+        EmployeeNode removeNode = head;
+        head = head.getNext();
+
+        size--;
+        return removeNode.getEmployee();
+    }
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void printList() {
+        EmployeeNode current = head;
+        System.out.print("HEAD -> ");
+        while (current != null) {
+            System.out.print(current + " -> ");
+            current = current.getNext();
+        }
+        System.out.println("null");
+    }
+}
+```
+
 # Stack 
 
 A stack is an abstract (conceptual) data type - because, instead of dictating how we store the items, stacks dictate what operations we can do on the items.  
