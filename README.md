@@ -417,7 +417,11 @@ That is not a good thing. It would essentially be a linked list.
 Ideally, when we build a binary search tree - we must try to keep it as balanced as possible. There are types of BSTs that are self-balanced. Most popular ones are AVL trees and Red-Black trees.  
 
 There are 4 ways to traverse a tree.  
-![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/61-bst.png "Binary Search Tree")  
+* Level - visit nodes on each level 
+* Pre-order - visit the root of every subtree first 
+* Post-order - visit the root of every subtree last 
+* In-order - visit left child, then root, then right child
+
 ![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/62-bst.png "Binary Search Tree")
 
 1. Level order : 25, 20, 27, 15, 22, 26, 30, 29, 32  
