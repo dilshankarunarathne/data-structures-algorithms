@@ -901,7 +901,9 @@ public class QuickSort {
 
 ### Counting Sort
 
-![Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/24-counting-sort.png "Counting Sort")
+* Not an in-place algorithm 
+* O(n) - can achieve this because we're making assumptions about the data we're sorting 
+* If we want the sort to be stable, we have to do some extra steps
 
 The algorithms we've looked at so far - don't make any assumptions about the data they are sorting. The specific implementations might do - but the algorithms don't assume a certain data type - we can sort integers, strings, floats and etc.  
 They also don't assume that the data being sorted is bounded in any way. For example - they don't assume that all the values being sorted are less than 100.  
@@ -953,7 +955,11 @@ This implementation of counting sort is not stable. But with additional steps - 
 
 ### Radix Sort
 
-![Radix Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/29-radix-sort.png "Radix Sort")
+* Counting sort is often used as the sort algorithm for radix sort - must be stable counting sort 
+* O(n) - can achieve this because we're making assumptions about the data that we're sorting
+* Even so, it often runs slower than O(nlogn) algorithms because of the overhead involved 
+* In-place depends on which sort algorithm you use 
+* Stable algorithm 
 
 This is another algorithm that makes assumptions about the data it's sorting. And in this case - the assumptions that is makes is that the data has the same radix and width.
 
