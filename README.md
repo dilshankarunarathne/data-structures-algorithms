@@ -979,9 +979,16 @@ Because radix sort makes assumptions about the data, we can achive linear time. 
 
 #### Stable Counting Sort
 
-![Stable Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/49-stable-counting-sort.png "Stable Counting Sort")
+* This works because we traverse the input array from right to left, and we write duplicate values into the temp array from right to left 
+* If we know that duplicate values will go into positions 3 and 4, we write the rightmost value in the input array into position 4, and the leftmost value into position 3
+* This peeserves the relative positioning of duplicate values 
+* By adjusting the counting array after the inital pass, we can map values to indices in the temp array
+* Can also use linked lists to make counting sort stable 
 
-![Stable Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/30-stable-counting-sort.png "Stable Counting Sort")  
+* Requires extra steps 
+* Can calculate
+
+
 ![Stable Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/31-stable-counting-sort.png "Stable Counting Sort")  
 ![Stable Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/32-stable-counting-sort.png "Stable Counting Sort")  
 ![Stable Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/33-stable-counting-sort.png "Stable Counting Sort")  
