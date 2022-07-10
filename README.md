@@ -548,14 +548,14 @@ public class BubbleSort {
 
 This comes into play when we have duplicate values in the data structure.
 
-![Unstable Sort](C:\Projects\data-structures-and-algorithms-note\assets\4-unstable-sort.png "Unstable Sort")
+![Unstable Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/4-unstable-sort.png "Unstable Sort")
 
 Take a look at this example. There are two 9s in the array - one at index 1 and the other one ath index 3. Note that we have colored them, so we will be able to uniquely identify each 9 for this example.
 
 If the sorting algorithm is unstable, then the relative ordering of the duplicate items will not be preserved.  
 That means, if we use an unstable sorting algorithm, there is a chance that the black-9 might come before white-9 after the sort.
 
-![Stable Sort](C:\Projects\data-structures-and-algorithms-note\assets\5-stable-sort.png "Stable Sort")
+![Stable Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/5-stable-sort.png "Stable Sort")
 
 So, it doesn't really matter if two equal integers switched positions while sorting. But think about objects, it could matter.
 Sometimes in sorting - within - sorting (multi-level sorting) also, this could be an important point to consider.
