@@ -272,11 +272,14 @@ Load factor being high - array being almost full means, there is a higher likeli
 Load factor can play a role in determining the time complexity for retrieval.  
 
 Add to a Hash Table backed by an array 
-* Provide a key-value pair 
-* Use a hash function to hash the key to an int value 
-* Store the value at the hashed key value - this is the index into the array 
+1. Provide a key-value pair 
+2. Use a hash function to hash the key to an int value 
+3. Store the value at the hashed key value - this is the index into the array 
 
-Re
+Retrieve a value from a hash table 
+1. Provide the key 
+2. Use the same hash function to hash the key to an int value 
+3. Retrieve the value stored at the hashed key value 
 
 ## Linear Probing 
 
