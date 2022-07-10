@@ -700,6 +700,7 @@ Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/
 | [A108870](https://oeis.org/A108870)        |                                                                                                                        | 1, 4, 9, 20, 46, 103, ...       | Unknown                           | Tokuda, 1992                      |
 | [A102549](https://oeis.org/A102549)        | Unknown (experimentally derived)                                                                                       | 1, 4, 10, 23, 57, 132, 301, 701 | Unknown                           | Ciura, 2001                       |
 
+#### The Knuth sequence 
 
 | k    | Gap (interval) |
 |------|----------------|
