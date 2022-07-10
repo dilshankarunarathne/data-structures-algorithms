@@ -700,15 +700,16 @@ Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/
 | [A108870](https://oeis.org/A108870)        |                                                                                                                        | 1, 4, 9, 20, 46, 103, ...       | Unknown                           | Tokuda, 1992                      |
 | [A102549](https://oeis.org/A102549)        | Unknown (experimentally derived)                                                                                       | 1, 4, 10, 23, 57, 132, 301, 701 | Unknown                           | Ciura, 2001                       |
 
-![knuth-sequence](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/12-knuth-sequence.png "knuth-sequence")
 
 | k    | Gap (interval) |
 |------|----------------|
 | 1    | 1              |
-| 2    | 1              |
-| 3    | 1              |
-| 4    | 1              |
-| 5    | 1              |
+| 2    | 4              |
+| 3    | 13             |
+| 4    | 40             |
+| 5    | 121            | 
+
+* 
 
 ![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/13-shell-sort.png "Shell Sort")
 
