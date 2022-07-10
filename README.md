@@ -1073,7 +1073,50 @@ So, values in the bucket 0 must all be less than the values in bucket 1. Otherwi
 
 So, whatever the hasing function we use - it must make sure that the hashed values it produces meet that requirement. It should put items into buckets, based on their order. For example, if we have (actual values - not hashes) values 1, 2, and 3 - it cannot put 2 into a lower bucket than 1.  
 
-An implementation of bucket sort -> [src/Sorting/BucketSort.java](/Sorting/BucketSort.java) 
+An implementation of bucket sort -> 
+
+```java
+package Sorting;
+
+import java.util.*;
+
+public class BucketSort {
+    public static void main(String[] args) {
+        int [] intArray = { 56, 46, 83, 66, 95, 92, 43 } ;
+
+        bucketSort(intArray);
+
+        Arrays.stream(intArray).forEach(System.out::println);
+    }
+
+    private static void bucketSort(int[] input) {
+        List<Integer>[] buckets = new List[10];
+
+        for (int i = 0; i < buckets.length; i ++) {
+            buckets[i] = new ArrayList<Integer>();
+        }
+
+        for (int i = 0; i < input.length; i ++) {
+            buckets[hash(input[i])].add(input[i]);
+        }
+
+        for (List bucket: buckets) {
+            Collections.sort(bucket);
+        }
+
+        int j = 0;
+        for (int i = 0; i < buckets.length; i ++) {
+            for (int value: buckets[i]) {
+                input[j ++] = value;
+            }
+        }
+    }
+
+    private static int hash(int value) {
+        return value / (int) 10;
+    }
+}
+```
 
 ## Heap Sort 
 
