@@ -271,8 +271,7 @@ Load factor being high - array being almost full means, there is a higher likeli
 
 Load factor can play a role in determining the time complexity for retrieval.  
 
-![Hash Table](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/51-hash-table.png "Hash Table")  
-![Hash Table](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/52-hash-table.png "Hash Table")  
+
 
 ## Linear Probing 
 
