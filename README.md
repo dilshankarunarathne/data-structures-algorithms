@@ -757,7 +757,8 @@ public class ShellSort {
 ### Merge Sort
 
 * Not an in-place algorithm 
-* 
+* O(nlogn) - base 2. We're repeatedly dividing the array in half during the splitting phase 
+* Stable algorithm 
 
 Merge sort is a divide and conquer algorithm, because it involves splitting the array we want to sort - into a bunch of smaller arrays. We can also write the algorithm using loops, but usually it's written recursively.
 
