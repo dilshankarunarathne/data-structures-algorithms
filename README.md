@@ -830,7 +830,9 @@ public class MergeSort {
 
 ### Quick Sort
 
-![Quick Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/22-quick-sort.png "Quick Sort")
+* In-place algorithm 
+* O(nlogn) - base 2. We're repeatedly partitioning the array into two halves 
+* Unstable algorithm 
 
 Quick sort is another divide and conquer algorithm - that can be implementated using recursion.  
 It chooses a pivot element to partition the array into two parts. This is also a logical division.  
