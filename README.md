@@ -656,7 +656,7 @@ If most of the values are already sorted, then only a few values will actually h
 
 A computer scientist named Donald Shell realised that if we could cut down on the amount of shifting, the insertion sort algorithm would run a lot faster. That is the concept of Shell sort algorithm.
 
-![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\10-shell-sort.png "Shell Sort")  
+![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/10-shell-sort.png "Shell Sort")  
 ![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\11-shell-sort.png "Shell Sort")
 
 Basically, it would do an insertion sort on values that are already objected to some preliminary sorting. Because of that there will be a lot less shifting required.
