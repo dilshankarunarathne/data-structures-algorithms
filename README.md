@@ -476,8 +476,20 @@ We can use PriorityQueue with any type of object, as long as that class implemen
 
 Check out Heap Sort algorithm: [Sorting.md](Sorting.md)
 
+# Sets 
 
-### Notes on Sets: [Sets.md](Sets.md)  
+Sets are an abstract data type because they really apply to any data structure. All a set is, a data set that doesn't contain duplicate elements.  
+
+JDK has support for sets. For the [java.util.Set](https://docs.oracle.com/javase/7/docs/api/java/util/Set.html) interface it says, sets contain no pair of elements **e1** and **e2** such that **e1.equals(e2)** is true, and a set can contain at most one null element.  
+We can use the `add()` method to add a specified element - **if it's not already present**. There is also a `contains`, `iterator`, `toArray` and other usual methods.  
+
+If we want to implement our own customized set, there is [java.util.AbstractSet](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractSet.html) we could use rather than implementing the [Set](https://docs.oracle.com/javase/7/docs/api/java/util/Set.html) interface.  
+
+There is also a [java.util.HashSet](https://docs.oracle.com/javase/7/docs/api/java/util/HashSet.html), which is an implementation of [Set](https://docs.oracle.com/javase/7/docs/api/java/util/Set.html) that's backed by a hash table (which is actually a HashMap instance).  
+
+There is also a [java.util.LinkedHashSet](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashSet.html), which is a hash table and linked list implementation of the [Set](https://docs.oracle.com/javase/7/docs/api/java/util/Set.html) interface.  
+
+There is also a [java.util.TreeSet](https://docs.oracle.com/javase/7/docs/api/java/util/TreeSet.html), which is a naviagable implementation of [Set](https://docs.oracle.com/javase/7/docs/api/java/util/Set.html) - based on a tree map. So, if we wanted to build a tree that has no duplicate values in it, we could use this class. 
 
 # Sorting and Searching Algorithms 
 
