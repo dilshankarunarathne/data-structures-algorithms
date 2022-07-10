@@ -680,15 +680,15 @@ Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/
 | [A108870](https://oeis.org/A108870)        |                                                                                                                        | 1, 4, 9, 20, 46, 103, ...       | Unknown                           | Tokuda, 1992                      |
 | [A102549](https://oeis.org/A102549)        | Unknown (experimentally derived)                                                                                       | 1, 4, 10, 23, 57, 132, 301, 701 | Unknown                           | Ciura, 2001                       |
 
-![knuth-sequence](C:\Projects\data-structures-and-algorithms-note\assets\12-knuth-sequence.png "knuth-sequence")
+![knuth-sequence](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/12-knuth-sequence.png "knuth-sequence")
 
-![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\13-shell-sort.png "Shell Sort")
+![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/13-shell-sort.png "Shell Sort")
 
-![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\14-shell-sort.png "Shell Sort")
+![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/14-shell-sort.png "Shell Sort")
 
-![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\15-shell-sort.png "Shell Sort")
+![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/15-shell-sort.png "Shell Sort")
 
-![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\16-shell-sort.png "Shell Sort")
+![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/16-shell-sort.png "Shell Sort")
 
 We can also improve bubble sort with the same idea.
 
