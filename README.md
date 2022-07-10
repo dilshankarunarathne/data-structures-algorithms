@@ -692,7 +692,8 @@ Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/
 
 We can also improve bubble sort with the same idea.
 
-An implementation of shell sort -> [src/Sorting/ShellSort.java](/Sorting/ShellSort.java)
+An implementation of shell sort -> 
+
 
 ### Merge Sort
 
