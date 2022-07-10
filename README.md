@@ -986,7 +986,8 @@ Because radix sort makes assumptions about the data, we can achive linear time. 
 * Can also use linked lists to make counting sort stable 
 
 * Requires extra steps 
-* Can calculate
+* Can calculate where values shoul be written back to the original array 
+* Writing the values into the array in backwards order ensures stability 
 
 
 ![Stable Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/31-stable-counting-sort.png "Stable Counting Sort")  
