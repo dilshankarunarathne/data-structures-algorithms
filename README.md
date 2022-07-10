@@ -849,7 +849,55 @@ Hint: Simply, we can choose the first element as the pivot in each left-right su
 In the worst case, quick sort takes quadratic time.  
 But in the average case, it performs with a time complexity of O(nlogn). Most of the time - it performs better than merge sort.
 
-An implementation of quick sort -> [src/Sorting/QuickSort.java](/Sorting/QuickSort.java)
+An implementation of quick sort -> 
+
+```java
+package Sorting;
+
+import java.util.Arrays;
+
+public class QuickSort {
+    public static void main(String[] args) {
+        int [] intArray = {20, 35, -15, 7, 55, 1, -22} ;
+
+        quickSort(intArray, 0, intArray.length);
+
+        Arrays.stream(intArray).forEach(System.out::println);
+    }
+
+    private static void quickSort(int[] input, int start, int end) {
+        if (end - start < 2) return;
+
+        int pivotIndex = partition(input, start, end);
+        quickSort(input, start, pivotIndex);
+        quickSort(input, pivotIndex + 1, end);
+    }
+
+    private static int partition(int[] input, int start, int end) {
+        // This uses the first element as the pivot
+        int pivot = input[start];
+        int i = start;
+        int j = end;
+
+        while (i < j) {
+            // NOTE: empty loop body
+            while (i < j && input [-- j] >= pivot);
+            if (i < j) {
+                input [i] = input [j];
+            }
+
+            // NOTE: empty loop body
+            while (i < j && input [++ i] <= pivot);
+            if (i < j) {
+                input [j] = input [i];
+            }
+        }
+
+        input [j] = pivot;
+        return j;
+    }
+}
+```
 
 ### Counting Sort
 
