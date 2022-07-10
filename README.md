@@ -913,9 +913,12 @@ This algorithm doesn't actually compare values in the array against each other. 
 
 The values must be within a specific range, and that range has to be reasonable. It can't be huge. We cannot use counting sort to sort the values that are between 1 - 1000000 for example.
 
-![Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\23-counting-sort.png "Counting Sort")
+![Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/23-counting-sort.png "Counting Sort")
 
-An implementation of counting sort -> [src/Sorting/CountingSort.java](/Sorting/CountingSort.java)
+An implementation of counting sort -> 
+
+```java
+
 
 This implementation of counting sort is not stable. But with additional steps - we can write a stable counting sort implementation.
 
