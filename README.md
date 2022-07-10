@@ -498,7 +498,9 @@ parent = floor((i - 1) / 2)
 
 ![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/68-heap.png "Heap")  
 
-![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/70-heap.png "Heap")  
+#### Insert into Heap 
+
+* 
 
 ![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/71-heap.png "Heap")  
 
