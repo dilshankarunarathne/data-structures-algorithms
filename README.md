@@ -78,6 +78,73 @@ In Java, a concrete data structure is usually a class (array might be an excepti
 So, any data structure can be used to implement an abstract data type. As long as we have a class that implements the interface for the abstract data type, any class can behave like that abstract data type.  
 In case of lists, any class that implement the List interface is a list. So, we can have a class that uses an array to implement the List interface.  
 
+**Note that, for all the examples of data structures below, we will be using objects of type `Employee` and `StoredEmployee` implemented as follow.**
+
+**Employee.java**
+```java
+package DataStructures;
+
+public class Employee {
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    public Employee(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Employee employee = (Employee) obj;
+        if (id != employee.id) return false;
+        if (! firstName.equals(employee.firstName)) return false;
+        return lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee:" + id + "[" + firstName + " " + lastName + "]";
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+}
+```
+
 # List 
 
 List is an abstract data type, it's not a concrete data type. Normally when it comes to abstract data types - there is an interface involved, and List is no exception.  
