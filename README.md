@@ -369,6 +369,49 @@ public class ArrayStack {
 }
 ```
 
+A LinkedList implementation of a stack:
+
+```java
+package DataStructures.Stack;
+
+import DataStructures.Employee;
+
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class LinkedStack {
+    private LinkedList<Employee> stack;
+
+    public LinkedStack() {
+        stack = new LinkedList<>();
+    }
+
+    public void push(Employee employee) {
+        stack.push(employee);
+    }
+
+    public Employee pop() {
+        return stack.pop();
+    }
+
+    public Employee peek() {
+        return stack.peek();
+    }
+
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
+    public void printStack() {
+        ListIterator<Employee> iterator = stack.listIterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
+        System.out.println();
+    }
+}
+```
+
 Note that this LinkedList is a doubly-linked list. If memory is an issue, we'd have to implement our own singly-linked list class. 
 
 # Queues 
