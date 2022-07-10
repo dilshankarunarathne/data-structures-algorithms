@@ -1001,7 +1001,56 @@ Because radix sort makes assumptions about the data, we can achive linear time. 
 ![Stable Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/47-stable-counting-sort.png "Stable Counting Sort")  
 ![Stable Counting Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/48-stable-counting-sort.png "Stable Counting Sort")
 
-An implementation of radix sort -> [src/Sorting/RadixSort.java](/Sorting/RadixSort.java)  
+An implementation of radix sort -> 
+
+```java
+package Sorting;
+
+import java.util.Arrays;
+
+public class RadixSort {
+    public static void main(String[] args) {
+        int [] radixArray = {4725, 4586, 1330, 8792, 1594, 5729} ;
+
+        radixSort(radixArray, 10, 4);
+
+        Arrays.stream(radixArray).forEach(System.out::println);
+    }
+
+    private static void radixSort(int[] input, int radix, int width) {
+        for (int i = 0; i < width; i ++) {
+            radixSingleSort(input, i, radix);
+        }
+    }
+
+    private static void radixSingleSort(int[] input, int position, int radix) {
+        int numItems = input.length;
+
+        int[] countArray = new int[radix];
+
+        for (int value: input) {
+            countArray[getDigit(position, value, radix)] ++ ;
+        }
+        // Adjust the count array
+        for (int j = 1; j < radix; j ++) {
+            countArray[j] += countArray[j - 1];
+        }
+
+        int[] temp = new int[numItems];
+        for (int tempIndex = numItems - 1; tempIndex >= 0; tempIndex --) {
+            temp[-- countArray[getDigit(position, input[tempIndex], radix)]] = input[tempIndex];
+        }
+
+        for (int tempIndex = 0; tempIndex < numItems; tempIndex ++) {
+            input[tempIndex] = temp[tempIndex];
+        }
+    }
+
+    private static int getDigit(int position, int value, int radix) {
+        return value / (int) Math.pow(radix, position) % radix;
+    }
+}
+```
 
 ## Bucket Sort 
 
