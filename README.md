@@ -177,7 +177,11 @@ A stack can be backed by any data structure. But the ideal data structure for ba
 With a singly linked list - we always work with the item at the front of the list.  
 The last element we added get set to the head (or in this case the top). And whenever we remove an item, we always remove the head. So, we can perform all the operations in constant time.  
 
-![Stack](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/50-stack.png "Stack")
+* O(1) for push, pop and peek, when using a linked list 
+* If you use an array, then push is O(n), because the array may have to be resized 
+* If you know the maximum number of items that will ever be on the stack, an array can be a good choice 
+* If memory is tight, an array might be a good choice 
+* Linked list is ideal
 
 The Stack implementation of Java - [java.util.Stack](https://docs.oracle.com/javase/7/docs/api/java/util/Stack.html)  
 We could use this stack at any time for our purposes in Java.  
