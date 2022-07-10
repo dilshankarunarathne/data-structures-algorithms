@@ -611,7 +611,7 @@ public class SelectionSort {
 
 ### Insertion Sort
 
-![Insertion Sort](C:\Projects\data-structures-and-algorithms-note\assets\8-insertion-sort-attributes.png "Insertion Sort")
+![Insertion Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/8-insertion-sort-attributes.png "Insertion Sort")
 
 The implementation we will be discussing here, grows assorted partitions from left to right.  
 It starts out by saying that the element at the position 0 is in the sorted partition. And because of the sorted partition is now of length = 1, by default the element is sorted.  
@@ -619,7 +619,7 @@ So in the begining, the elements to the right are in the unsorted partition.
 On each iteration, we take the first element of the unsorted partition, and we insert it into the sorted partition. So, at the end of each iteration, we'll have grown this partition by 1.  
 When we're inserting, we compare the value we're inserting with the values in the sorted partition, by traversing the sorted partition from right to left. And we look for a value that is less than or equal to the one we're trying to insert. Because, once we've found that value, we can stop looking.
 
-![Insertion Sort](C:\Projects\data-structures-and-algorithms-note\assets\9-insertion-sort.png "Insertion Sort")
+![Insertion Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/9-insertion-sort.png "Insertion Sort")
 
 An implementation of selection sort -> [src/Sorting/InsertionSort.java](/Sorting/InsertionSort.java)
 
