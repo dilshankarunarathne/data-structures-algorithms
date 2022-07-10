@@ -329,8 +329,98 @@ There is a lot of support in the JDK for Hash Tables. So, if we want to use a ha
 
 Check out [Bucket Sorting](/Sorting.md), it is a important sorting algorithm in hash tables. 
 
+# Trees 
 
-### Notes on Trees: [Trees.md](Trees.md)  
+Some say trees are data structures - and others say they are abstract data types. It's a little bit of a gray area when it comes to trees - because they do dictate how to organize the data.  
+We can write trees using Tree and TreeNode classes - but we can also back certain tree types with arrays.  
+
+![Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/55-trees.png "Tree")
+
+* Trees are hierachical data structres.  
+* Every circle in this tree is called a node.  
+* These nodes can have any number of children. But, each node can have one and only one parent.  
+* There is a special node in every tree - called the root. The root node does not have a parent. Every tree can have one and only one root node.  
+* Each pointing arrows is called an edge. They always point from the parent to the child.  
+* A leaf node has no children.  
+* A tree with only one node (the root node) is called a singleton tree.  
+* Every tree consists of one or more sub trees.  
+* Trees cannot have cyclic paths.  
+* The depth of a node is the number of edges from the node to the root.  
+* The height of a node is the number of edges on the longest path from the node to a leaf. The height of a tree - is the height of its root node.  
+* A level of a tree contains all the nodes that are at the same depth.  
+* We say a node is an ancestor of another node - if it's in that node's path. A node can have multiple ancestors, and its ancestors are all the nodes from that node to the root.  
+
+Trees are ideal when things can contain other things or when things can descend from other things. Any hierachical structure would be good to implement with trees. Java's class hierachy is a tree - or the file system in HDDs.  
+
+# Binary Tree 
+
+![Binary Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/56-binary-tree.png "Binary Tree")
+
+A binary tree is a tree in which every node has 0, 1 or 2 children. And because a node can possibly have two children, when we talk about nodes - we refer to the two children as the left child and the right child.  
+
+![Complete Binary Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/57-full-binary-tree.png "Complete Binary Tree")  
+
+A binary tree is called - complete, if every level except the last level has two children. So, in the last level of the tree - all the nodes must be as left as possible.  
+
+![Full Binary Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/58-full-binary-tree.png "Full Binary Tree")  
+
+A full binary tree is a complete tree as well, but in a full binary tree - every node other than the leaves, has to have two children. It's okay to have incomplete binary trees.  
+
+# Binary Search Tree   
+
+In practice, we only use binary search trees. The reason they are very popular is - we can perform insertions, deletions and retrievals in O(logn) time.  
+They also have faster searching than unsorted arrays do, but equivalent time complexity to sorted arrays.  
+With BSTs, every node that is left from a parent node is lower than the parent node. And everything that is right to a parent node is greater than the parent node.  
+
+![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/59-binary-search-tree.png "Binary Search Tree")  
+
+![Binary Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/56-binary-tree.png "Binary Tree")  
+
+Some implementations dictate that duplicate values are not allowed.  
+If we ever want to store duplicates - one way to do that is to store duplicates either in the left sub tree, or the right sub tree. We have to choose one and stick with it.  
+Another approach is to have a counter with each node. So, rather than adding a seperate node for duplicate values, we can just increment the counter.  
+
+We can get the minimum value of a BST just by taking the leftmost node. And the maximum value from the rightmost node.  
+
+![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/60-binary-search-tree.png "Binary Search Tree")  
+
+The order in which we insert the elements is going to influence the ultimate ordering of the nodes in the tree.  
+
+We put the first element at the root, and then insert subsequent elements in their sorted order. If we had used a different order of insertion - or if we had shuffled the data set before insertion, we will end up with a different tree.  
+
+If we insert sorted data into a BST, we'd end up with either fully left leaning tree or a fully right leaning tree - depending on the ascending or descending ordering.  
+That is not a good thing. It would essentially be a linked list.  
+Ideally, when we build a binary search tree - we must try to keep it as balanced as possible. There are types of BSTs that are self-balanced. Most popular ones are AVL trees and Red-Black trees.  
+
+There are 4 ways to traverse a tree.  
+![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/61-bst.png "Binary Search Tree")  
+![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/62-bst.png "Binary Search Tree")
+
+1. Level order : 25, 20, 27, 15, 22, 26, 30, 29, 32  
+2. Pre-order : 25, 20, 15, 22, 27, 26, 30, 29, 32 
+3. In-order : 15, 20, 22, 25, 26, 27, 29, 30, 32 
+4. Post-order : 15, 22, 20, 26, 29, 32, 30, 27, 25 
+
+![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/63-bst.png "Binary Search Tree")
+
+For deleting nodes, there are three possible cases:  
+1. Node is a leaf.  
+This case is really easy. All we need to do is null out the node - from the parent node. 
+2. Node has only one child.  
+In this case, all we do is - we replace the node we're deleting with its only child. 
+3. Node has two children.  
+![Binary Search Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/64-bst.png "Binary Search Tree")  
+
+There are not a lot of tree implementations in the JDK. The one that we'll probably use is [java.util.TreeMap](https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html) class.  
+It takes key-value pairs. It says, **it is a Red-Black tree based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.**   
+Red-Black trees are self-balancing trees. That does not mean they are always perfectly balanced. But they are the best available and highly used tree structure these days because - they have a good tradeoff between balancing a tree to a good enough degree and performance.  
+
+So, if we use a TreeMap, we'll be using a red-black tree in the background. It guarantees O(logn) time for `containsKey()`, `get()`, `put()` and `remove()` - and that's because red black trees are BSTs.  
+
+**Note that this implementation is not synchronized.** If we do need synchronization the map should be wrapped using the `Collections.synchronizedSortedMap()` method.  
+
+There is also a [java.util.TreeSet](https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html) class. In sets, the data structure cannot contain duplicate elements, and it is an abstract data type. This is an implementation that is based on TreeMap.  
+ 
 
 ### Notes on Heaps: [Heaps.md](Heaps.md)  
 
