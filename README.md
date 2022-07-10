@@ -1003,9 +1003,85 @@ When we go to add an element, and the key that we use has a hashed value that co
 The drawback with this approach is, at each get or removal, we have to search the entire linked list for the element with the key we're interested in. But, with a good hashing function and a good load factor, these linked lists will typically be short.  
 
 When we use this approach, we need to initialize each array position with a linked list. We could do that either in the constructor for the hash table, or at each add call.  
-Also, some implement this technique - backed by an Object array. If we get a collision, we store a linked list at that index. Otherwise, we can just store the value.  
+Also, some implement this technique - backed by an Object array. If we get a collision, we store a linked list at that index. Otherwise, we can just store the value. 
 
-The [src\DataStructures\HashTable\ChainedHashTable.java](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/blob/main/src/DataStructures/HashTable/ChainedHashTable.java) class is an implementation of a hash table that uses chaining instead of linear probing.  
+This is an implementation of a hash table that uses chaining instead of linear probing. 
+
+```java
+package DataStructures.HashTable;
+
+import DataStructures.Employee;
+import DataStructures.StoredEmployee;
+
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class ChainedHashTable {
+    private LinkedList<StoredEmployee>[] hashTable;
+
+    public ChainedHashTable() {
+        hashTable = new LinkedList[10];
+        for (int i = 0; i < hashTable.length; i ++) {
+            hashTable[i] = new LinkedList<>();
+        }
+    }
+
+    public void put(String key, Employee employee) {
+        int hashedKey = hashKey(key);
+        hashTable[hashedKey].add(new StoredEmployee(key, employee));
+    }
+
+    public Employee get(String key) {
+        int hashedKey = hashKey(key);
+        ListIterator<StoredEmployee> iterator = hashTable[hashedKey].listIterator();
+        StoredEmployee employee = null;
+        while (iterator.hasNext()) {
+            employee = iterator.next();
+            if (employee.key.equals(key)) return employee.employee;
+        }
+        return null;
+    }
+
+    public Employee remove(String key) {
+        int hashedKey = hashKey(key);
+        ListIterator<StoredEmployee> iterator = hashTable[hashedKey].listIterator();
+        StoredEmployee employee = null;
+        int index = -1;
+        while (iterator.hasNext()) {
+            employee = iterator.next();
+            index++;
+            break;
+        }
+
+        if (employee == null) {
+            return null;
+        }
+        hashTable[hashedKey].remove(index);
+        return employee.employee;
+    }
+
+    private int hashKey(String key) {
+//        return key.length() % hashTable.length;
+        return Math.abs(key.hashCode() % hashTable.length);
+    }
+
+    public void printHashTable() {
+        for (int i = 0; i < hashTable.length; i ++) {
+            if (hashTable[i].isEmpty()) {
+                System.out.println("Position " + i + ": empty");
+            } else {
+                System.out.print("Position " + i + ": ");
+                ListIterator<StoredEmployee> iterator = hashTable[i].listIterator();
+                while (iterator.hasNext()) {
+                    System.out.print(iterator.next().employee);
+                    System.out.print(" -> ");
+                }
+                System.out.println("null");
+            }
+        }
+    }
+}
+```
 
 In reality, most of the time - linear probing would be faster than chaining. And without having to use linked lists, we also don't get the redundant memory usage. But chaining is much simpler to implement than linear probing.  
 
