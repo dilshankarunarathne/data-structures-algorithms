@@ -1298,7 +1298,7 @@ It's also an array implementation, so that array is automatically resized.
 It is also not synchronized. If we want to use it with multiple threads, we should use a java.uti.PriorityBlockingQueue instead.  
 We can use PriorityQueue with any type of object, as long as that class implements the Comparable interface. Or, we can pass a Comparator when we construct the PriorityQueue. If we wanted a max heaped priority queue, we can provide a Comparator with the constructor.  
 
-Check out Heap Sort algorithm: [Sorting.md](Sorting.md)
+Check out Heap Sort algorithm below...
 
 # Sets 
 
