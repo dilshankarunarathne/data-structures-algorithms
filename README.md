@@ -493,7 +493,275 @@ There is also a [java.util.TreeSet](https://docs.oracle.com/javase/7/docs/api/ja
 
 # Sorting and Searching Algorithms 
 
-### Notes on Sorting Algorithms: [Sorting.md](Sorting.md)  
+# Sort Algorithms
+
+### Bubble Sort
+
+![Bubble Sort Analysis](C:\Projects\data-structures-and-algorithms-note\assets\2-bubble-sort-analysis.png "Bubble Sort Analysis")
+
+In-place algorithm means that we don't have to create another array to perform the algorithm's operations. We can use the original array for that.
+
+Bubble sort is a sorting algorithm that works by repeatedly stepping through lists that need to be sorted, comparing each pair of adjacent items and swapping them if they are in the wrong order. This passing procedure is repeated until no swaps are required, indicating that the list is sorted.
+
+![Bubble Sort Attributes](C:\Projects\data-structures-and-algorithms-note\assets\3-bubble-sort-attributes.png "Bubble Sort Attributes")
+
+We need to keep an attribute on **unsortedPartitionIndex**, because we're only swapping the elements. To make sure that the entire array (data structure) is sorted, we'd have to traverse through the array for **numberOfElements** times.
+
+An implementation of bubble sort -> [src/Sorting/BubbleSort.java](/Sorting/BubbleSort.java)
+
+### Stable vs Unstable Sort Algorithms
+
+This comes into play when we have duplicate values in the data structure.
+
+![Unstable Sort](C:\Projects\data-structures-and-algorithms-note\assets\4-unstable-sort.png "Unstable Sort")
+
+Take a look at this example. There are two 9s in the array - one at index 1 and the other one ath index 3. Note that we have colored them, so we will be able to uniquely identify each 9 for this example.
+
+If the sorting algorithm is unstable, then the relative ordering of the duplicate items will not be preserved.  
+That means, if we use an unstable sorting algorithm, there is a chance that the black-9 might come before white-9 after the sort.
+
+![Stable Sort](C:\Projects\data-structures-and-algorithms-note\assets\5-stable-sort.png "Stable Sort")
+
+So, it doesn't really matter if two equal integers switched positions while sorting. But think about objects, it could matter.
+Sometimes in sorting - within - sorting (multi-level sorting) also, this could be an important point to consider.
+
+Bubble Sort is a stable sort algorithm. When we're comparing adjacent elements, we do not swap if the elements are the same. So, their positions remains the same - in relative ordering.
+
+### Selection Sort
+
+![Selection Sort](C:\Projects\data-structures-and-algorithms-note\assets\6-selection-sort-attributes.png "Selection Sort")
+
+This algorithm divides the array into sorted and unsorted partitions, just like with bubble sort.
+Then we traverse the array, and we look for the largest element in the unsorted partition.
+And when we find it, we swap it with the last element in the unsorted partition.
+
+![Selection Sort](C:\Projects\data-structures-and-algorithms-note\assets\7-selection-sort.png "Selection Sort")
+
+An implementation of selection sort -> [src/Sorting/SelectionSort.java](/Sorting/SelectionSort.java)
+
+### Insertion Sort
+
+![Insertion Sort](C:\Projects\data-structures-and-algorithms-note\assets\8-insertion-sort-attributes.png "Insertion Sort")
+
+The implementation we will be discussing here, grows assorted partitions from left to right.  
+It starts out by saying that the element at the position 0 is in the sorted partition. And because of the sorted partition is now of length = 1, by default the element is sorted.  
+So in the begining, the elements to the right are in the unsorted partition.
+On each iteration, we take the first element of the unsorted partition, and we insert it into the sorted partition. So, at the end of each iteration, we'll have grown this partition by 1.  
+When we're inserting, we compare the value we're inserting with the values in the sorted partition, by traversing the sorted partition from right to left. And we look for a value that is less than or equal to the one we're trying to insert. Because, once we've found that value, we can stop looking.
+
+![Insertion Sort](C:\Projects\data-structures-and-algorithms-note\assets\9-insertion-sort.png "Insertion Sort")
+
+An implementation of selection sort -> [src/Sorting/InsertionSort.java](/Sorting/InsertionSort.java)
+
+### Shell Sort
+
+![17-shell-sort-attributes](C:\Projects\data-structures-and-algorithms-note\assets\17-shell-sort-attributes.png "17-shell-sort-attributes")
+
+The insertion sort algorithm takes quadratic time to run. But if the data set is 'nearly sorted', it runs in almost linear time. That is because it wouldn't have to do as much shifting.  
+If most of the values are already sorted, then only a few values will actually have to be inserted into the sorted partition - and the amount of shifting will be reduced.
+
+A computer scientist named Donald Shell realised that if we could cut down on the amount of shifting, the insertion sort algorithm would run a lot faster. That is the concept of Shell sort algorithm.
+
+![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\10-shell-sort.png "Shell Sort")  
+![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\11-shell-sort.png "Shell Sort")
+
+Basically, it would do an insertion sort on values that are already objected to some preliminary sorting. Because of that there will be a lot less shifting required.
+
+There is a ton of theories about how to choose, increase the gap value. The way that we calculate the gap can influence the time-complexity.
+
+Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/wiki/Shellsort)
+
+| [OEIS](https://en.wikipedia.org/wiki/OEIS) | General term (k ≥ 1)                                                                                                   | Concrete gaps                   | Worst-case time complexity | Author and year of publication    |
+|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------|---------------------------------|----------------------------|-----------------------------------|
+|                                            |                                                                                                                        |                                 |                            | Shell, 1959                       |
+|                                            |                                                                                                                        |                                 |                            | Frank & Lazarus, 1960             |
+| [A000225](https://oeis.org/A000225)        | 2<sup>k</sup> - 1                                                                                                      | 1, 3, 7, 15, 31, 63, ...        |                            | Hibbard, 1963                     |
+| [A083318](https://oeis.org/A083318)        | 2<sup>k</sup> - 1, prefixed with 1                                                                                     | 1, 3, 5, 9, 17, 33, 65, ...     |                            | Papernov & Stasevich, 1965        |
+| [A003586](https://oeis.org/A003586)        | Successive numbers of the form 2<sup>p</sup>3<sup>q</sup> ([3-smooth](https://en.wikipedia.org/wiki/3-smooth) numbers) | 1, 2, 3, 4, 6, 8, 9, 12, ...    |                            | Pratt, 1971                       |
+| [A003462](https://oeis.org/A003462)        |                                                                                                                        | 1, 4, 13, 40, 121, ...          |                            | Knuth, 1973 based on Pratt, 1971  |
+| [A036569](https://oeis.org/A036569)        |                                                                                                                        | 1, 3, 7, 21, 48, 112, ...       |                            | Incerpi & Sedgewick, 1985 & Knuth |
+| [A036562](https://oeis.org/A036562)        | 4<sup>k</sup> + 3&#8226;2<sup>k-1</sup> + 1,   prefixed with 1                                                         | 1, 8, 23, 77, 281, ...          |                            | Sedgewick, 1982                   |
+|                                            |                                                                                                                        | 1, 5, 19, 41, 109, ...          |                            | Sedgewick, 1986                   |
+| [A033622](https://oeis.org/A033622)        |                                                                                                                        |                                 | Unknown                           | Gonnet & Baeza-Yates, 1991        |
+| [A108870](https://oeis.org/A108870)        |                                                                                                                        | 1, 4, 9, 20, 46, 103, ...       | Unknown                           | Tokuda, 1992                      |
+| [A102549](https://oeis.org/A102549)        | Unknown (experimentally derived)                                                                                       | 1, 4, 10, 23, 57, 132, 301, 701 | Unknown                           | Ciura, 2001                       |
+
+![knuth-sequence](C:\Projects\data-structures-and-algorithms-note\assets\12-knuth-sequence.png "knuth-sequence")
+
+![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\13-shell-sort.png "Shell Sort")
+
+![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\14-shell-sort.png "Shell Sort")
+
+![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\15-shell-sort.png "Shell Sort")
+
+![Shell Sort](C:\Projects\data-structures-and-algorithms-note\assets\16-shell-sort.png "Shell Sort")
+
+We can also improve bubble sort with the same idea.
+
+An implementation of shell sort -> [src/Sorting/ShellSort.java](/Sorting/ShellSort.java)
+
+### Merge Sort
+
+![Merge Sort](C:\Projects\data-structures-and-algorithms-note\assets\21-merge-sort.png "Merge Sort")
+
+Merge sort is a divide and conquer algorithm, because it involves splitting the array we want to sort - into a bunch of smaller arrays. We can also write the algorithm using loops, but usually it's written recursively.
+
+It is usually implemented using recursion. A recursive method is a method that calles itself. All the calles to itself pushes into the call stack, and once it reaches a point of condition where it can break out of the recursion - the stack starts to unwind. If that break point is never met, eventually the call stack will use it's total memory, and it will lead into a StackOverflowException.
+
+Merge sort involves two major phases: splitting and merging. We do the sorting during the merging phase. The splitting phase a preparation phase to make sorting faster in the merging phase.
+
+The splitting is logical - we do not create new arrays when splitting. We use indices to keep track of where the array has been split.  
+In the splitting phase, we start with the unsorted array - and we divide the array into two arrays. Both of these arrays will be unsorted. We call the first array - the left array, and the second array - the right array.
+So, basically we split the array in the middle. If the array contains an odd number of elements - it will depend on the implementation how the splitting is done. Sometimes we can just insert an extra element to either array.  
+Once we have two arrays (left-right), we keep splitting down further. We need to keep splitting arrays and sub arrays until we reach a point where we have a bunch of arrays that all we have are one-element arrays.  
+A one-element array is sorted by default - because there's only one element in it.
+
+Once we have done that, we get to the merging phase. In the merging phase, we need to merge every left-right pair into a sorted array.  
+After that first merge, we'll have a bunch of 2-element sorted arrays. Then we need to merge those sorted arrays (left/right siblings) to end up with a bunch of 4-element sorted arrays.  
+We need to keep repeating this process until we have a single sorted array.
+
+The merging phase does not happen in-place, it uses temporary arrays. But the splitting phase is in-place.
+
+![Merge Sort](C:\Projects\data-structures-and-algorithms-note\assets\18-merge-sort.png "Merge Sort")
+
+![Merge Sort](C:\Projects\data-structures-and-algorithms-note\assets\19-merge-sort.png "Merge Sort")
+
+![Merge Sort](C:\Projects\data-structures-and-algorithms-note\assets\20-merge-sort.png "Merge Sort")
+
+An implementation of merge sort -> [src/Sorting/MergeSort.java](/Sorting/MergeSort.java)
+
+### Quick Sort
+
+![Quick Sort](C:\Projects\data-structures-and-algorithms-note\assets\22-quick-sort.png "Quick Sort")
+
+Quick sort is another divide and conquer algorithm - that can be implementated using recursion.  
+It chooses a pivot element to partition the array into two parts. This is also a logical division.  
+On the left half - it puts the elements that less than the pivot element, and on the right half - it puts the elements that are greater the pivot element. So, the pivot element will be in the middle between the two arrays. This is the partitioning step of quick sort.
+
+Think about it... If all the elements less than the pivot element is in its left side, and all the elements that are greater than the pivot element is in its right side, then the pivot element should be in its sorted-rightious position in the array.  
+But the left and right sub array are not sorted.
+
+Once that partitioning is done, we need to do the same thing recursively to the left array, and the right array.  
+Eventually, every element has been chosen as a pivot, so every element will be in its correct sorted position.
+
+Unlike merge sort, all this is done in-place. So, it saves memory.
+
+Hint: Simply, we can choose the first element as the pivot in each left-right sub arrays.
+
+In the worst case, quick sort takes quadratic time.  
+But in the average case, it performs with a time complexity of O(nlogn). Most of the time - it performs better than merge sort.
+
+An implementation of quick sort -> [src/Sorting/QuickSort.java](/Sorting/QuickSort.java)
+
+### Counting Sort
+
+![Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\24-counting-sort.png "Counting Sort")
+
+The algorithms we've looked at so far - don't make any assumptions about the data they are sorting. The specific implementations might do - but the algorithms don't assume a certain data type - we can sort integers, strings, floats and etc.  
+They also don't assume that the data being sorted is bounded in any way. For example - they don't assume that all the values being sorted are less than 100.  
+There are algorithms that do make assumptions about the data - and because they do, those algorithms can sort data more efficiently. In fact, they can achive linear O(n) time-complexity.
+
+Counting sort is an algorithm that makes assumptions about the data that it's sorting. It assume all the values it sort are discreet and they are within a specific range. So this algorithm only work with non-negetive discreet values. We can't sort floats and strings because they don't have discreet values. So, we will be using this algorithm with whole numbers.
+
+This algorithm doesn't actually compare values in the array against each other. Instead, it counts the number of occurences of each value.
+
+The values must be within a specific range, and that range has to be reasonable. It can't be huge. We cannot use counting sort to sort the values that are between 1 - 1000000 for example.
+
+![Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\23-counting-sort.png "Counting Sort")
+
+An implementation of counting sort -> [src/Sorting/CountingSort.java](/Sorting/CountingSort.java)
+
+This implementation of counting sort is not stable. But with additional steps - we can write a stable counting sort implementation.
+
+### Radix Sort
+
+![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\29-radix-sort.png "Radix Sort")
+
+This is another algorithm that makes assumptions about the data it's sorting. And in this case - the assumptions that is makes is that the data has the same radix and width.
+
+The radix is the number of unique digits or values (in the case of characters) that a numbering system or an alphabet has. For example, the radix for the decimal system is 10 - because there are 10 possible digits in the decimal system (0-9). For binary numbers, the radix is two. And for the english alphabet, the radix is 26.
+
+Width refers to the numebr of digits or letters. For example - number 5647 has the width of 4. The string "hello" has a width of 5.
+
+In radix sort, we assume that all the values have the same radix and the same width. That means we can use radix sort to sort integers and strings. The decimal point is not a digit, so floating point numbers cannot be sorted with radix sort.
+
+Radix sort - sorts based on each individual digit or letter positions. We start at the rightmost position and we sort based on the digit or the letter at that position, and then we move to the rightmost-1 digit or letter - sort based on that and keep doing that until we are done with all the digits or letters.
+
+**Critical Point**: This is a stable sort! **We have to use a stable sort algorithm at each stage.**
+
+![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\25-radix-sort.png "Radix Sort")  
+1's position is the rightmost digit in each integer.  
+![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\26-radix-sort.png "Radix Sort")  
+![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\27-radix-sort.png "Radix Sort")  
+![Radix Sort](C:\Projects\data-structures-and-algorithms-note\assets\28-radix-sort.png "Radix Sort")
+
+If it wasn't stable, radix sort wouldn't work. Because in each stage, we need to keep the sorting we did in the previous stage.
+
+Because radix sort makes assumptions about the data, we can achive linear time. Even so, this often runs slower than O(nlogn) because of the overhead involved in it. Overhead: we have to isolate each individual digit or letter at each phase - so, there's overhead involved just to figure out what value we're supposed to be sorting at each phase. Because of that, even though it can achive linear time, it often runs a little bit slower than that.
+
+#### Stable Counting Sort
+
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\49-stable-counting-sort.png "Stable Counting Sort")
+
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\30-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\31-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\32-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\33-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\34-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\35-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\36-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\37-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\38-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\39-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\40-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\41-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\42-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\43-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\44-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\45-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\46-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\47-stable-counting-sort.png "Stable Counting Sort")  
+![Stable Counting Sort](C:\Projects\data-structures-and-algorithms-note\assets\48-stable-counting-sort.png "Stable Counting Sort")
+
+An implementation of radix sort -> [src/Sorting/RadixSort.java](/Sorting/RadixSort.java)  
+
+## Bucket Sort 
+
+![Bucket Sort](\assets\53-bucket-sort.png "Bucket Sort")
+
+For this, we need a clear understanding about hashing. Check out [HashTables](HashTables.md) before reading this note.  
+This algorithm uses hashing, and it makes assumptions about the data - and because of that, it can achive linear time. It performs best when the hashed balues of the items being sorted are evenly distributed - so there aren't many collisions.  
+
+When it comes to bucket sort, we're hashing the values that we're sotring. So, there's no concept of keys and values.  
+1. It starts out by distributing the items that we want to sort into buckets, based on their hashed values. This is called **scattering**. 
+2. After that, it sorts the items in each bucket. 
+3. And then after every bucket has been sorted, it merges the buckets - this is called the **gathering phase**.  
+Because all the items in every bucket has been sorted, we can just concatenate all the buckets one after the other. So in the third phase, we need to copy all the items in the buckets - back into the original array.  
+
+This is actually a generalization of counting sort. Except, in bucket sort - we distribute values based on their hashed values.  
+
+In order for this third - gathering step to work, the values in the bucket X must all be greater than values in the bucket (X - 1) and less than the values in the bucket (X + 1).  
+This means, in the merging phase, we're going to write the values in the bucket 0 back to the array, and then we're going to follow those by the values in the bucket 1 - And values in the bucket 2... and so on.  
+So, values in the bucket 0 must all be less than the values in bucket 1. Otherwise when we write values back into the array, they are not going to be sorted.  
+
+So, whatever the hasing function we use - it must make sure that the hashed values it produces meet that requirement. It should put items into buckets, based on their order. For example, if we have (actual values - not hashes) values 1, 2, and 3 - it cannot put 2 into a lower bucket than 1.  
+
+An implementation of bucket sort -> [src/Sorting/BucketSort.java](/Sorting/BucketSort.java) 
+
+## Heap Sort 
+
+This sort algorithm can only sort a heap. For either min or max heap - the theory would be the same, only the implementation will be slightly different. In this note, we'll look at max heaps.  
+
+![Heap Sort](\assets\73-heap-sort.png "Heap Sort")  
+
+The worst case time complexity for this is O(nlogn), because we swap n elements and then on each iteration of the loop, we have to fix the heap.  
+This is also an in-place algorithm.  
+
+**Important: Once we sort the heap - it's no longer a heap. So, we shouldn't sort the heap as long as we want to keep using it as a heap.**  
+So, if we're using a heap - our motivation would be, eventually we'd be using heap sort on the data and not because we're going to use the heap as a heap.  
+In that scenario, the time for building the heap should also be taken into account. But even with that, this can be more efficient than some quadratic sort algorithms.  
+
+An implementation of heap sort -> [src/Sorting/HeapSort.java](/Sorting/HeapSort.java) 
 
 # Linear Search 
 
