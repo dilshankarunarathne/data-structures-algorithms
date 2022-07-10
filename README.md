@@ -709,7 +709,9 @@ Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/
 | 4    | 40             |
 | 5    | 121            | 
 
-* 
+* Gap is calculated using (3<sup>k</sup>-1)/2
+* We set k based on the length of the array 
+* We want the gap to be as close as possible to the length of the array we want to sort, without being greater than the length 
 
 ![Shell Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/13-shell-sort.png "Shell Sort")
 
