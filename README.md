@@ -497,13 +497,13 @@ There is also a [java.util.TreeSet](https://docs.oracle.com/javase/7/docs/api/ja
 
 ### Bubble Sort
 
-![Bubble Sort Analysis](C:\Projects\data-structures-and-algorithms-note\assets\2-bubble-sort-analysis.png "Bubble Sort Analysis")
+![Bubble Sort Analysis](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/2-bubble-sort-analysis.png "Bubble Sort Analysis")
 
 In-place algorithm means that we don't have to create another array to perform the algorithm's operations. We can use the original array for that.
 
 Bubble sort is a sorting algorithm that works by repeatedly stepping through lists that need to be sorted, comparing each pair of adjacent items and swapping them if they are in the wrong order. This passing procedure is repeated until no swaps are required, indicating that the list is sorted.
 
-![Bubble Sort Attributes](C:\Projects\data-structures-and-algorithms-note\assets\3-bubble-sort-attributes.png "Bubble Sort Attributes")
+![Bubble Sort Attributes](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/3-bubble-sort-attributes.png "Bubble Sort Attributes")
 
 We need to keep an attribute on **unsortedPartitionIndex**, because we're only swapping the elements. To make sure that the entire array (data structure) is sorted, we'd have to traverse through the array for **numberOfElements** times.
 
