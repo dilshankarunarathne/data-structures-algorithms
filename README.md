@@ -497,7 +497,10 @@ There is also a [java.util.TreeSet](https://docs.oracle.com/javase/7/docs/api/ja
 
 ### Bubble Sort
 
-![Bubble Sort Analysis](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/2-bubble-sort-analysis.png "Bubble Sort Analysis")
+* In-place algorithm
+* O(n<sup>2</sup>) time complexity - quadratic
+* It will take 100 steps to sort 10 items, 10000 steps to sort 100 items, 1000000 steps to sort 1000 items
+* Algorithm degrades quickly
 
 In-place algorithm means that we don't have to create another array to perform the algorithm's operations. We can use the original array for that.
 
