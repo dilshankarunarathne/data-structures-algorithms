@@ -1122,7 +1122,11 @@ public class BucketSort {
 
 This sort algorithm can only sort a heap. For either min or max heap - the theory would be the same, only the implementation will be slightly different. In this note, we'll look at max heaps.  
 
-![Heap Sort](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/73-heap-sort.png "Heap Sort")  
+* We know the root has the largest value 
+* Swap root with last element in the array 
+* Heapify the tree, but exclude the last node 
+* After heapify, second largest element is at the root 
+* Rinse and repeat 
 
 The worst case time complexity for this is O(nlogn), because we swap n elements and then on each iteration of the loop, we have to fix the heap.  
 This is also an in-place algorithm.  
