@@ -515,6 +515,7 @@ The time complexity would be similar to stacks. It would depend on what we back 
 
 Circular and non-circular array-backed implementations of a queue: 
 
+**ArrayQueue.java**
 ```java
 package DataStructures.Queue;
 
