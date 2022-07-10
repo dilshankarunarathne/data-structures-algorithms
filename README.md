@@ -465,7 +465,12 @@ The **heap property** depends on whether we're talking about a **max heap** or a
 * Max heap: every parent has to have a value - greater than or equal to its children. 
 * Min heap: every parent has to have a value - that is less than or equal to its children. 
 
-![Heap](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/65-heap.png "Heap")  
+* A binary heap must be a complete tree 
+* Children are added at each level from left to right 
+* Usually implemented as arrays 
+* The maximum or minimum value will always be at the root of the tree - the advantage of using a heap 
+* Heapify: process of converting a binary tree into a heap - this often has to be done after an insertion or deletion 
+* No required ordering between siblings
 
 Because heaps are complete, we don't need to create our own structure to implement the backing tree. We can use arrays.  
 
