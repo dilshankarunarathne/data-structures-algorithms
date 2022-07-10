@@ -311,7 +311,63 @@ Also, the LinkedList class of Java also implements the Deque interface. So, we c
 But, there are other methods in these implementations. Because they implement Deque, they have `push()`, `pop()` and `peek()` methods. But they also allow random access and other operations that should not be allowed in a stack.  
 So, we could either - use one of those implementations and limit ourselves to using only the methods for a stack, to make it behave like a stack. Or, we could create our own Stack class, that is backed by one of those implementations. All we need to implement in our class is those methods we want to expose, and the implementation would be very simple.  
 
-Array and LinkedList implementations of a stack: [\src\DataStructures\Stack](\src\DataStructures\Stack)  
+Array and LinkedList implementations of a stack: 
+
+```java
+package DataStructures.Stack;
+
+import DataStructures.Employee;
+
+import java.util.EmptyStackException;
+
+public class ArrayStack {
+    private Employee[] stack;
+    private int top;
+
+    public ArrayStack(int capacity) {
+        stack = new Employee[capacity];
+    }
+
+    public void push(Employee employee) {
+        if (top == stack.length) {
+            Employee[] newArray = new Employee[2 * stack.length];
+            System.arraycopy(stack, 0, newArray, 0, stack.length);
+            stack = newArray;
+        }
+
+        stack[top ++] = employee;
+    }
+
+    public Employee pop() {
+        if (isEmpty()) throw new EmptyStackException();
+
+        Employee employee = stack[-- top];
+        stack[top] = null;
+        return employee;
+    }
+
+    public Employee peek() {
+        if (isEmpty()) throw new EmptyStackException();
+
+        return stack[top - 1];
+    }
+
+    public int size() {
+        return top;
+    }
+
+    public boolean isEmpty() {
+        return top == 0;
+    }
+
+    public void printStack() {
+        for (int i = top - 1; i >= 0; i --) {
+            System.out.print(stack[i] + " ");
+        }
+        System.out.println();
+    }
+}
+```
 
 Note that this LinkedList is a doubly-linked list. If memory is an issue, we'd have to implement our own singly-linked list class. 
 
