@@ -36,7 +36,7 @@ When we look at these, we should focus on the 'worst case', because - looking at
 We could take the average case, but that's not going to tell us the absolute-worst time-complexity. So, if we want to know what the upper-bound is, or what the absolute-worst time we can expect from this algorithm, it's much more helpful to look at the worst case and compare the worst case scenarios between two algorithms.  
 
 | Big-O            |              |
-|------------------|--------------|
+| ---------------- | ------------ |
 | O(1)             | Constant     |
 | O(logn)          | Logarithmic  |
 | O(n)             | Linear       |
@@ -54,15 +54,15 @@ We could take the average case, but that's not going to tell us the absolute-wor
 * If we know the index of an element, the time to retrieve the element will be the same, no matter where it is in the array.  
 
 
-| Operation                                          | Time Complexity       |
-|----------------------------------------------------|-----------------------|
-| Retrieve with index                                | O(1) - Constant Time  |
-| Retrieve without index                             | O(n) - Linear Time    |
-| Add an element to a full array                     | O(n)                  |
-| Add an element to the end of the array (has space) | O(1)                  |
-| Insert or update an element at a specific index    | O(1)                  |
-| Delete an element by setting it to null            | O(1)                  |
-| Delete an element by shifting elements             | O(n)                  |
+| Operation                                          | Time Complexity      |
+| -------------------------------------------------- | -------------------- |
+| Retrieve with index                                | O(1) - Constant Time |
+| Retrieve without index                             | O(n) - Linear Time   |
+| Add an element to a full array                     | O(n)                 |
+| Add an element to the end of the array (has space) | O(1)                 |
+| Insert or update an element at a specific index    | O(1)                 |
+| Delete an element by setting it to null            | O(1)                 |
+| Delete an element by shifting elements             | O(n)                 |
 
 # Data Structures 
 
@@ -1119,7 +1119,7 @@ Check out [Bucket Sorting](/Sorting.md), it is a important sorting algorithm in 
 Some say trees are data structures - and others say they are abstract data types. It's a little bit of a gray area when it comes to trees - because they do dictate how to organize the data.  
 We can write trees using Tree and TreeNode classes - but we can also back certain tree types with arrays.  
 
-![Tree](https://github.com/dilshankarunarathne/data-structures-and-algorithms-note/raw/main/assets/55-trees.png "Tree")
+![Tree](https://github.com/dilshankarunarathne/data-structures-algorithms/raw/main/assets/55-trees.png "Tree")
 
 * Trees are hierachical data structres.  
 * Every circle in this tree is called a node.  
@@ -1796,7 +1796,7 @@ There is a ton of theories about how to choose, increase the gap value. The way 
 Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/wiki/Shellsort)
 
 | [OEIS](https://en.wikipedia.org/wiki/OEIS) | General term (k ≥ 1)                                                                                                   | Concrete gaps                   | Worst-case time complexity | Author and year of publication    |
-|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------|---------------------------------|----------------------------|-----------------------------------|
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------- | -------------------------- | --------------------------------- |
 |                                            |                                                                                                                        |                                 |                            | Shell, 1959                       |
 |                                            |                                                                                                                        |                                 |                            | Frank & Lazarus, 1960             |
 | [A000225](https://oeis.org/A000225)        | 2<sup>k</sup> - 1                                                                                                      | 1, 3, 7, 15, 31, 63, ...        |                            | Hibbard, 1963                     |
@@ -1806,19 +1806,19 @@ Read this -> [https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/
 | [A036569](https://oeis.org/A036569)        |                                                                                                                        | 1, 3, 7, 21, 48, 112, ...       |                            | Incerpi & Sedgewick, 1985 & Knuth |
 | [A036562](https://oeis.org/A036562)        | 4<sup>k</sup> + 3&#8226;2<sup>k-1</sup> + 1,   prefixed with 1                                                         | 1, 8, 23, 77, 281, ...          |                            | Sedgewick, 1982                   |
 |                                            |                                                                                                                        | 1, 5, 19, 41, 109, ...          |                            | Sedgewick, 1986                   |
-| [A033622](https://oeis.org/A033622)        |                                                                                                                        |                                 | Unknown                           | Gonnet & Baeza-Yates, 1991        |
-| [A108870](https://oeis.org/A108870)        |                                                                                                                        | 1, 4, 9, 20, 46, 103, ...       | Unknown                           | Tokuda, 1992                      |
-| [A102549](https://oeis.org/A102549)        | Unknown (experimentally derived)                                                                                       | 1, 4, 10, 23, 57, 132, 301, 701 | Unknown                           | Ciura, 2001                       |
+| [A033622](https://oeis.org/A033622)        |                                                                                                                        |                                 | Unknown                    | Gonnet & Baeza-Yates, 1991        |
+| [A108870](https://oeis.org/A108870)        |                                                                                                                        | 1, 4, 9, 20, 46, 103, ...       | Unknown                    | Tokuda, 1992                      |
+| [A102549](https://oeis.org/A102549)        | Unknown (experimentally derived)                                                                                       | 1, 4, 10, 23, 57, 132, 301, 701 | Unknown                    | Ciura, 2001                       |
 
 #### The Knuth sequence 
 
-| k    | Gap (interval) |
-|------|----------------|
-| 1    | 1              |
-| 2    | 4              |
-| 3    | 13             |
-| 4    | 40             |
-| 5    | 121            | 
+| k   | Gap (interval) |
+| --- | -------------- |
+| 1   | 1              |
+| 2   | 4              |
+| 3   | 13             |
+| 4   | 40             |
+| 5   | 121            |
 
 * Gap is calculated using (3<sup>k</sup>-1)/2
 * We set k based on the length of the array 
